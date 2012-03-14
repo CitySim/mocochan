@@ -1,0 +1,14 @@
+/ModelConverter/bin
+/ModelConverter/obj
+/ModelConverter.Model/bin
+/ModelConverter.Model/obj
+/ModelConverter.Plugin.Collada/bin
+/ModelConverter.Plugin.Collada/obj
+/ModelConverter.Plugin.Obj/bin
+/ModelConverter.Plugin.Obj/obj
+/ModelConverter.Plugin.V3o/bin
+/ModelConverter.Plugin.V3o/obj
+/ModelConverter.Plugin.X/bin
+/ModelConverter.Plugin.X/obj
+*.user
+.DS_Store
