@@ -20,16 +20,7 @@ namespace ModelConverter.Plugin.Collada
                 return extensionsDic;
             }
         }
-        public DateTime PluginVersion 
-        {
-            get
-            {
-                Version version = Assembly.GetExecutingAssembly().GetName().Version;
-                return new DateTime(2000, 1, 1)
-                    .AddDays(version.Build)
-                    .AddSeconds(version.Revision * 2);
-            } 
-        }
+		public Version PluginVersion { get { return Assembly.GetExecutingAssembly().GetName().Version; } }
         public string Creator { get { return "Sven Tatter"; } }
         public string About { get { return "Support for COLLADA Exchange Format"; } }
 

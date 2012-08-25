@@ -43,6 +43,9 @@ namespace ModelConverter.Model
             }
         }
 
+		/// <summary>
+		/// Recalcutes the Normals of all Polygons.
+		/// </summary>
         public void RecalculateNormals()
         {
             foreach (Polygon polygon in Polygons)

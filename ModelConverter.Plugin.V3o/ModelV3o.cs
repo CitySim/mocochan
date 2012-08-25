@@ -22,26 +22,12 @@ namespace ModelConverter.Plugin.V3o
                 return extensionsDic;
             }
         }
-        public DateTime PluginVersion
-        {
-            get
-            {
-                Version version = Assembly.GetExecutingAssembly().GetName().Version;
-                return new DateTime(2000, 1, 1)
-                    .AddDays(version.Build)
-                    .AddSeconds(version.Revision * 2);
-            }
-        }
+		public Version PluginVersion { get { return Assembly.GetExecutingAssembly().GetName().Version; } }
         public string Creator { get { return "Sven Tatter"; } }
         public string About { get { return "Support for v3o used by Emergency3 and Emergncy4"; } }
 
         public bool canRead { get { return true; } }
         public bool canWrite { get { return true; } }
-        public bool supportReadTexture { get { return true; } }
-        public bool supportWriteTexture { get { return true; } }
-        public bool supportModelAnimation { get { return true; } }
-        public bool supportModelAnimationNormal { get { return true; } }
-        public bool supportModelAnimationTexture { get { return false; } }
 
         public BaseModel Read(string filePath, out List<LogMessage> Log)
         {
@@ -53,11 +39,11 @@ namespace ModelConverter.Plugin.V3o
             {
                 string line = fileLines[i].Trim();
                 if (line == String.Empty)
-                    continue; //yeah, emtpy line
+                    continue; // yeah, emtpy line
                 if (line.StartsWith("//"))
-                    continue; //a comment
+                    continue; // a comment
                 if (line.StartsWith("["))
-                    continue; //TODO: some Meta Info, we dont read
+                    continue; // some Meta Info, we dont read
 
                 string[] splittedLine;
                 splittedLine = line.Split(',');
@@ -117,7 +103,7 @@ namespace ModelConverter.Plugin.V3o
                             Log.Add(new LogMessage("Malformed Polygon in Line " + i, LogLevel.Warning));
                             continue;
                         }
-                        Polygon polygon = new Polygon();
+                        Polygon polygon = new Polygon(model);
                         polygon.Point1Id = Convert.ToInt32(splittedLine[4]) - 1;
                         polygon.Point2Id = Convert.ToInt32(splittedLine[3]) - 1;
                         polygon.Point3Id = Convert.ToInt32(splittedLine[2]) - 1;
@@ -417,5 +403,5 @@ namespace ModelConverter.Plugin.V3o
             }
             return 1;
         }
-    }
+	}
 }

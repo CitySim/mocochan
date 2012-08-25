@@ -8,6 +8,6 @@ namespace ModelConverter.Model
     public class ModelAnimationFrame
     {
         public int Duration;
-        public Dictionary<int,Vertex> Vertices = new Dictionary<int,Vertex>();
+        public Dictionary<int, Vertex> Vertices = new Dictionary<int, Vertex>();
     }
 }

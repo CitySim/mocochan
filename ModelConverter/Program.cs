@@ -26,61 +26,66 @@ namespace ModelConverter
 			{
 				string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 				Console.WriteLine("ModelConverter CLI v. {0}", version);
-				Console.WriteLine("--------------------------------------------------------------------------------");
+				Console.WriteLine();
 			}
 
 			if (Program.config.writePluginInfo)
 			{
-				Console.Write("╔══════════════════════╤═══════════╤═══════════╤═══════════╤═══════════════════╗");
-				Console.Write("║ Name                 │ Geometry  │ Texure    │ Animation │                   ║");
-				Console.Write("║                      │  R  │  W  │  R  │  W  │  R  │  W  │                   ║");
-				Console.Write("╟──────────────────────┼─────┴─────┼─────┴─────┼─────┴─────┼───────────────────╢");
-				bool first = true;
+				Console.WriteLine("List of loaded Plugin:");
 				foreach (IPlugin plugin in Program.config.Plugins)
 				{
-					if (!first)
-					{
-						Console.Write("╟──────────────────────┼─────┴─────┼─────┴─────┼─────┴─────┼───────────────────╢");
-					}
-				
-					Console.Write("║ ");
-					Console.Write(FillSpace(plugin.Name, 20));
-					Console.Write(" │           │           │           │                  ");
-					Console.Write(" ║");
-
-					first = false;
+					Console.WriteLine("- {0}", plugin.Name);
 				}
-				Console.Write("╚══════════════════════╧═══════════╧═══════════╧═══════════╧═══════════════════╝");
+				Console.WriteLine();
 			}
 
-			Console.WriteLine("...");
 			Console.ReadKey();
         }
 
-		private static string FillSpace(string text, int length)
-		{
-			for (; text.Length < length; )
-			{
-				text = text + " ";
-			}
-
-			return text;
-		}
-
-		private static Dictionary<string, object> parseCliArgumenst(string[] args)
+		private static Dictionary<string, string> parseCliArgumenst(string[] args)
         {
-            Dictionary<string, object> parsedArgs = new Dictionary<string, object>();
+			Dictionary<string, string> parsedArgs = new Dictionary<string, string>();
 
             for (int i = 0; i < args.Length; i++)
             {
-
+				if (args[i].Contains('='))
+				{
+					string[] splittedArg = args[i].Split('=');
+					parsedArgs.Add(splittedArg[0], splittedArg[0]);
+				}
+				else
+				{
+					parsedArgs.Add("input", args[i]);
+				}
             }
 
             return parsedArgs;
         }
 
-        private static void parseArgumenst(Dictionary<string, object> parsedArgs)
+        private static void parseArgumenst(Dictionary<string, string> parsedArgs)
         {
+			foreach (KeyValuePair<string, string> arg in parsedArgs)
+			{
+				switch (arg.Key)
+				{
+					case "--pluginDir":
+						config.PluginDirectory = arg.Value;
+						break;
+
+					case "-s":
+					case "--scale":
+						config.PluginDirectory = double.Parse(arg.Value);
+						break;
+
+					default: // input-output
+						if (config.Output != string.Empty)
+						{
+							config.InputFiles.Add(config.Output);
+						}
+						config.Output = arg.Value;
+						break;
+				}
+			}
         }
 
         private static void loadPlugins()
@@ -99,7 +104,7 @@ namespace ModelConverter
                 }
                 catch (Exception ex)
                 {
-					Console.WriteLine("error loadin plugin");
+					Console.WriteLine("error loading plugin");
                 }
 
                 foreach (System.Type type in assembly.GetTypes())

@@ -22,16 +22,7 @@ namespace ModelConverter.Plugin.Obj
                 return extensionsDic;
             }
         }
-        public DateTime PluginVersion
-        {
-            get
-            {
-                Version version = Assembly.GetExecutingAssembly().GetName().Version;
-                return new DateTime(2000, 1, 1)
-                    .AddDays(version.Build)
-                    .AddSeconds(version.Revision * 2);
-            }
-        }
+		public Version PluginVersion { get { return Assembly.GetExecutingAssembly().GetName().Version; } }
         public string Creator { get { return "Sven Tatter"; } }
         public string About { get { return "Support for Wavefront OBJ Files"; } }
 
@@ -202,7 +193,7 @@ namespace ModelConverter.Plugin.Obj
                     case "f":
                         for (int j = tokens.Length - 2; j > 1; j--)
                         {
-                            Polygon polygon = new Polygon();
+                            Polygon polygon = new Polygon(model);
 
                             string[][] points = new string[3][];
                             points[0] = tokens[tokens.Length - 1].Split(new char[] { '/' });
