@@ -8,6 +8,7 @@ namespace ModelConverter
 	{
 		public bool writeInfo = true;
 		public bool writePluginInfo = true;
+		public bool writeHelp;
 
 		public List<string> InputFiles = new List<string>();
 		public string Output = string.Empty;

@@ -39,7 +39,27 @@ namespace ModelConverter
 				Console.WriteLine();
 			}
 
-			Console.ReadKey();
+			// check if import and export is given
+			if (Program.config.InputFiles.Count == 0) 
+			{
+				Console.WriteLine("At least one input File is needed");
+				Console.WriteLine();
+				Program.config.writeHelp = true;
+			}
+
+			if (Program.config.writeHelp)
+			{
+				Console.WriteLine("Basic Usage:");
+				Console.WriteLine(" ModelConverter [options] inputFile.ext");
+				Console.WriteLine();
+				Console.WriteLine("List of avaible options:");
+				Console.WriteLine("        --pluginDir : Allows you to load Plugin from a Directory different than");
+				Console.WriteLine("                      the current Folder.");
+				Console.WriteLine(" -s     --scale     : Scale the model by Factor. 2 = double size, 0.5 half size");
+				Console.WriteLine(" -o     --output    : Set output Folder. Default same as file origin.");
+			}
+
+
         }
 
 		private static Dictionary<string, string> parseCliArgumenst(string[] args)
@@ -74,15 +94,16 @@ namespace ModelConverter
 
 					case "-s":
 					case "--scale":
-						config.PluginDirectory = double.Parse(arg.Value);
+						config.scaleFactor = double.Parse(arg.Value);
 						break;
 
-					default: // input-output
-						if (config.Output != string.Empty)
-						{
-							config.InputFiles.Add(config.Output);
-						}
+					case "-o":
+					case "--output":
 						config.Output = arg.Value;
+						break;
+
+					default: // input
+						config.InputFiles.Add(arg.Value);
 						break;
 				}
 			}
@@ -104,7 +125,7 @@ namespace ModelConverter
                 }
                 catch (Exception ex)
                 {
-					Console.WriteLine("error loading plugin");
+					Console.WriteLine("error loading plugin: {0}", ex.Message);
                 }
 
                 foreach (System.Type type in assembly.GetTypes())

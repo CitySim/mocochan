@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 11
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelConverter.Model", "ModelConverter.Model\ModelConverter.Model.csproj", "{2465BC4F-590D-476A-A965-B4D6BD548FE5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelConverter.Plugin.V3o", "ModelConverter.Plugin.V3o\ModelConverter.Plugin.V3o.csproj", "{70B38F4A-B604-48C9-996F-F13A0620B053}"
@@ -13,7 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelConverter.Plugin.Colla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelConverter", "ModelConverter\ModelConverter.csproj", "{88889228-1657-4115-8574-6700251DB94F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelConverter.Old", "ModelConverter.Old\ModelConverter.Old.csproj", "{F60D392B-8753-40FD-B8BC-4C84EF7AB0C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelConverter.Wpf", "ModelConverter.Old\ModelConverter.Wpf.csproj", "{F60D392B-8753-40FD-B8BC-4C84EF7AB0C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelConverter.WinForms", "ModelConverter.WinForms\ModelConverter.WinForms.csproj", "{9D735FA5-18B0-4D07-90A4-AA55CCD68E70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,16 @@ Global
 		{88889228-1657-4115-8574-6700251DB94F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{88889228-1657-4115-8574-6700251DB94F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{88889228-1657-4115-8574-6700251DB94F}.Release|x86.ActiveCfg = Release|Any CPU
+		{9D735FA5-18B0-4D07-90A4-AA55CCD68E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D735FA5-18B0-4D07-90A4-AA55CCD68E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D735FA5-18B0-4D07-90A4-AA55CCD68E70}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9D735FA5-18B0-4D07-90A4-AA55CCD68E70}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9D735FA5-18B0-4D07-90A4-AA55CCD68E70}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9D735FA5-18B0-4D07-90A4-AA55CCD68E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D735FA5-18B0-4D07-90A4-AA55CCD68E70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D735FA5-18B0-4D07-90A4-AA55CCD68E70}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9D735FA5-18B0-4D07-90A4-AA55CCD68E70}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9D735FA5-18B0-4D07-90A4-AA55CCD68E70}.Release|x86.ActiveCfg = Release|Any CPU
 		{AD174C0C-AEF9-4921-A896-4BCBF432091E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AD174C0C-AEF9-4921-A896-4BCBF432091E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD174C0C-AEF9-4921-A896-4BCBF432091E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
