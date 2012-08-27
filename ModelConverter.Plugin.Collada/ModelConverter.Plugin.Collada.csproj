@@ -56,9 +56,9 @@
   </Target> -->
   <Target Name="AfterBuild">
     <ItemGroup>
-      <DebugFiles Include="bin\Debug\*.*"/>
+      <BuildFiles Include="$(TargetDir)*.*" />
     </ItemGroup>
-    <Copy SourceFiles="@(DebugFiles)"
-          DestinationFolder="..\ModelConverter\bin\Debug" />
+    <Copy SourceFiles="@(BuildFiles)" DestinationFolder="$(SolutionDir)ModelConverter\bin\$(ConfigurationName)" />
+    <Copy SourceFiles="@(BuildFiles)" DestinationFolder="$(SolutionDir)ModelConverter.WinForms\bin\$(ConfigurationName)" />
   </Target>
 </Project>
