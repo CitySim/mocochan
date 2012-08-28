@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
+    <Compile Include="Converter.cs" />
+    <Compile Include="ILogProvider.cs" />
+    <Compile Include="IPluginHost.cs" />
     <Compile Include="LogMessage.cs" />
     <Compile Include="Data\Material.cs" />
     <Compile Include="ModelAnimation.cs" />

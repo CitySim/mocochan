@@ -7,16 +7,19 @@ namespace ModelConverter.Model
 {
     public interface IPlugin
     {
-        string Name { get; }
-        Dictionary<string, string> fileExtensions { get; }
-        Version PluginVersion { get; }
-        string Creator { get; }
-        string About { get; }
+		string Name { get; }
+		string Creator { get; }
+		string About { get; }
+		Version PluginVersion { get; }
 
+		IPluginHost host { get; set; }
+
+		Dictionary<string, string> fileExtensions { get; }
+		
         bool canRead { get; }
         bool canWrite { get; }
 
-        BaseModel Read(string filePath, out List<LogMessage> Log);
-        void Write(string filePath, BaseModel model, out List<LogMessage> Log);
+        BaseModel Read(string filePath);
+        void Write(string filePath, BaseModel model);
     }
 }

@@ -8,9 +8,15 @@ using System.Xml;
 
 namespace ModelConverter.Plugin.Collada
 {
-    public class ModelCollade:IPlugin
+    public class ModelCollade : IPlugin
     {
-        public string Name { get { return "COLLADA"; } }
+		public string Name { get { return "COLLADA"; } }
+		public string Creator { get { return "Sven Tatter"; } }
+		public string About { get { return "Support for COLLADA Exchange Format"; } }
+		public Version PluginVersion { get { return Assembly.GetExecutingAssembly().GetName().Version; } }
+
+		public IPluginHost host { get; set; }
+
         public Dictionary<string, string> fileExtensions
         {
             get
@@ -20,19 +26,11 @@ namespace ModelConverter.Plugin.Collada
                 return extensionsDic;
             }
         }
-		public Version PluginVersion { get { return Assembly.GetExecutingAssembly().GetName().Version; } }
-        public string Creator { get { return "Sven Tatter"; } }
-        public string About { get { return "Support for COLLADA Exchange Format"; } }
 
         public bool canRead { get { return false; } }
         public bool canWrite { get { return false; } }
-        public bool supportReadTexture { get { return false; } }
-        public bool supportWriteTexture { get { return false; } }
-        public bool supportModelAnimation { get { return false; } }
-        public bool supportModelAnimationNormal { get { return false; } }
-        public bool supportModelAnimationTexture { get { return false; } }
 
-        public BaseModel Read(string filePath, out List<LogMessage> Log)
+        public BaseModel Read(string filePath)
         {
             XmlDocument document = new XmlDocument();
             document.Load(filePath);
@@ -50,7 +48,7 @@ namespace ModelConverter.Plugin.Collada
             throw new NotImplementedException();
         }
 
-        public void Write(string filePath, BaseModel model, out List<LogMessage> Log)
+        public void Write(string filePath, BaseModel model)
         {
             throw new NotImplementedException();
         }

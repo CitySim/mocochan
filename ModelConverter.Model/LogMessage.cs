@@ -5,13 +5,6 @@ using System.Text;
 
 namespace ModelConverter.Model
 {
-    public enum LogLevel
-    {
-        Info,
-        Warning,
-        Error
-    }
-
     public class LogMessage
     {
         public string Message;

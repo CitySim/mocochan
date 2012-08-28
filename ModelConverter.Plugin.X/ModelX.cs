@@ -11,7 +11,13 @@ namespace ModelConverter.Plugin.X
 {
     public class ModelX : IPlugin
     {
-        public string Name { get { return "x DirectX"; } }
+		public string Name { get { return "x DirectX"; } }
+		public string Creator { get { return "Sven Tatter"; } }
+		public string About { get { return "Support for x Files"; } }
+		public Version PluginVersion { get { return Assembly.GetExecutingAssembly().GetName().Version; } }
+
+		public IPluginHost host { get; set; }
+
         public Dictionary<string, string> fileExtensions
         {
             get
@@ -21,27 +27,17 @@ namespace ModelConverter.Plugin.X
                 return extensionsDic;
             }
         }
-		public Version PluginVersion { get { return Assembly.GetExecutingAssembly().GetName().Version; } }
-        public string Creator { get { return "Sven Tatter"; } }
-        public string About { get { return "Support for x Files"; } }
 
         public bool canRead { get { return false; } }
         public bool canWrite { get { return false; } } // <--------------- enable writing of X Files here
-        public bool supportReadTexture { get { return false; } }
-        public bool supportWriteTexture { get { return false; } }
-        public bool supportModelAnimation { get { return false; } }
-        public bool supportModelAnimationNormal { get { return false; } }
-        public bool supportModelAnimationTexture { get { return false; } }
 
-        public BaseModel Read(string filePath, out List<LogMessage> Log)
+        public BaseModel Read(string filePath)
         {
-            Log = new List<LogMessage>();
             return null;
         }
 
-        public void Write(string filePath, BaseModel model, out List<LogMessage> Log)
+        public void Write(string filePath, BaseModel model)
         {
-            Log = new List<LogMessage>();
             List<string> fileLines = new List<string>();
 
             fileLines.Add("xof 0302txt 0032");

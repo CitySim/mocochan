@@ -9,18 +9,17 @@ using ModelConverter.Model;
 
 namespace ModelConverter
 {
-    class Program
-    {
+	class Program
+	{
 		private static Config config;
 
-        static void Main(string[] args)
-        {
+		static void Main(string[] args)
+		{
 			Program.config = new Config();
 
 			// TODO: load some optional global config file
-            parseArgumenst(parseCliArgumenst(args));
-            loadPlugins();
-
+			parseArgumenst(parseCliArgumenst(args));
+			
 			// alls things loaded
 			if (Program.config.writeInfo)
 			{
@@ -29,18 +28,8 @@ namespace ModelConverter
 				Console.WriteLine();
 			}
 
-			if (Program.config.writePluginInfo)
-			{
-				Console.WriteLine("List of loaded Plugin:");
-				foreach (IPlugin plugin in Program.config.Plugins)
-				{
-					Console.WriteLine("- {0}", plugin.Name);
-				}
-				Console.WriteLine();
-			}
-
 			// check if import and export is given
-			if (Program.config.InputFiles.Count == 0) 
+			if (Program.config.InputFiles.Count == 0)
 			{
 				Console.WriteLine("At least one input File is needed");
 				Console.WriteLine();
@@ -57,17 +46,22 @@ namespace ModelConverter
 				Console.WriteLine("                      the current Folder.");
 				Console.WriteLine(" -s     --scale     : Scale the model by Factor. 2 = double size, 0.5 half size");
 				Console.WriteLine(" -o     --output    : Set output Folder. Default same as file origin.");
+
+				Console.WriteLine();
 			}
 
+			Converter modelConverter = new Converter();
+			modelConverter.logProvider = new ConsoleLogProvider();
 
-        }
+			modelConverter.loadPlugins(Program.config.PluginDirectory);
+		}
 
 		private static Dictionary<string, string> parseCliArgumenst(string[] args)
-        {
+		{
 			Dictionary<string, string> parsedArgs = new Dictionary<string, string>();
 
-            for (int i = 0; i < args.Length; i++)
-            {
+			for (int i = 0; i < args.Length; i++)
+			{
 				if (args[i].Contains('='))
 				{
 					string[] splittedArg = args[i].Split('=');
@@ -77,13 +71,13 @@ namespace ModelConverter
 				{
 					parsedArgs.Add("input", args[i]);
 				}
-            }
+			}
 
-            return parsedArgs;
-        }
+			return parsedArgs;
+		}
 
-        private static void parseArgumenst(Dictionary<string, string> parsedArgs)
-        {
+		private static void parseArgumenst(Dictionary<string, string> parsedArgs)
+		{
 			foreach (KeyValuePair<string, string> arg in parsedArgs)
 			{
 				switch (arg.Key)
@@ -107,36 +101,6 @@ namespace ModelConverter
 						break;
 				}
 			}
-        }
-
-        private static void loadPlugins()
-        {
-            foreach (string file in Directory.GetFiles(Program.config.PluginDirectory))
-            {
-				if (!System.IO.Path.GetFileName(file).EndsWith(".dll"))
-				{
-					continue;
-				}
-
-                Assembly assembly = Assembly.GetExecutingAssembly();
-                try
-                {
-                    assembly = Assembly.LoadFrom(file);
-                }
-                catch (Exception ex)
-                {
-					Console.WriteLine("error loading plugin: {0}", ex.Message);
-                }
-
-                foreach (System.Type type in assembly.GetTypes())
-                {
-                    if (type.IsPublic && !type.IsAbstract && type.GetInterface("ModelConverter.Model.IPlugin") != null)
-                    {
-                        IPlugin newPlugin = (IPlugin)Activator.CreateInstance(type);
-						Program.config.Plugins.Add(newPlugin);
-                    }
-                }
-            }
-        }
-    }
+		}
+	}
 }

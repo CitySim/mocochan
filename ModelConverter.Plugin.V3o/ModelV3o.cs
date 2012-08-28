@@ -12,7 +12,13 @@ namespace ModelConverter.Plugin.V3o
 {
     public class ModelV3o : IPlugin
     {
-        public string Name { get { return "v3o Emergency 3 & 4"; } }
+		public string Name { get { return "v3o Emergency 3 & 4"; } }
+		public string Creator { get { return "Sven Tatter"; } }
+		public string About { get { return "Support for v3o used by Emergency3 and Emergncy4"; } }
+		public Version PluginVersion { get { return Assembly.GetExecutingAssembly().GetName().Version; } }
+
+		public IPluginHost host { get; set; }
+		
         public Dictionary<string, string> fileExtensions
         {
             get
@@ -22,17 +28,13 @@ namespace ModelConverter.Plugin.V3o
                 return extensionsDic;
             }
         }
-		public Version PluginVersion { get { return Assembly.GetExecutingAssembly().GetName().Version; } }
-        public string Creator { get { return "Sven Tatter"; } }
-        public string About { get { return "Support for v3o used by Emergency3 and Emergncy4"; } }
 
         public bool canRead { get { return true; } }
         public bool canWrite { get { return true; } }
 
-        public BaseModel Read(string filePath, out List<LogMessage> Log)
+        public BaseModel Read(string filePath)
         {
             string[] fileLines = File.ReadAllLines(filePath);
-            Log = new List<LogMessage>();
             BaseModel model = new BaseModel();
 
             for (int i = 0; i < fileLines.Length; i++)
@@ -55,7 +57,7 @@ namespace ModelConverter.Plugin.V3o
                     case "SRF":
                         if (splittedLine.Length != 19)
                         {
-                            Log.Add(new LogMessage("Malformed Material in Line " + i, LogLevel.Warning));
+							host.logProvider.Log(LogLevel.Warning, "Malformed Material in Line " + i);
                             continue;
                         }
                         Material material = new Material();
@@ -67,7 +69,7 @@ namespace ModelConverter.Plugin.V3o
                     case "D":
                         if (splittedLine.Length != 13)
                         {
-                            Log.Add(new LogMessage("Malformed Vertex in Line " + i, LogLevel.Warning));
+                            host.logProvider.Log(LogLevel.Warning, "Malformed Vertex in Line " + i);
                             continue;
                         }
                         Vertex vertex = new Vertex();
@@ -91,16 +93,16 @@ namespace ModelConverter.Plugin.V3o
                     case "BP":
                         if (splittedLine.Length != 9)
                         {
-                            Log.Add(new LogMessage("Malformed \"BP\" in Line " + i, LogLevel.Warning));
+                            host.logProvider.Log(LogLevel.Warning, "Malformed \"BP\" in Line " + i);
                             continue;
                         }
-                        Log.Add(new LogMessage("Node that BP-Lines are not recognized", LogLevel.Warning));
+                        host.logProvider.Log(LogLevel.Warning, "Node that BP-Lines are not recognized");
                         break;
 
                     case "P":
                         if (splittedLine.Length != 21)
                         {
-                            Log.Add(new LogMessage("Malformed Polygon in Line " + i, LogLevel.Warning));
+                            host.logProvider.Log(LogLevel.Warning, "Malformed Polygon in Line " + i);
                             continue;
                         }
                         Polygon polygon = new Polygon(model);
@@ -112,40 +114,40 @@ namespace ModelConverter.Plugin.V3o
                         break;
 
                     case "K":
-                        Log.Add(new LogMessage("Node that K-Lines are not recognized", LogLevel.Warning));
+                        host.logProvider.Log(LogLevel.Warning, "Node that K-Lines are not recognized");
                         break;
 
                     case "BOX":
                         if (splittedLine.Length != 7)
                         {
-                            Log.Add(new LogMessage("Malformed \"BOX\" in Line " + i, LogLevel.Warning));
+							host.logProvider.Log(LogLevel.Warning, "Malformed \"BOX\" in Line " + i);
                             continue;
                         }
-                        Log.Add(new LogMessage("Node that BOX-Line are not recognized", LogLevel.Warning));
+						host.logProvider.Log(LogLevel.Warning, "Node that BOX-Line are not recognized");
                         break;
 
                     case "N":
                         if (splittedLine.Length != 5)
                         {
-                            Log.Add(new LogMessage("Malformed \"N\" in Line " + i, LogLevel.Warning));
+							host.logProvider.Log(LogLevel.Warning, "Malformed \"N\" in Line " + i);
                             continue;
                         }
-                        Log.Add(new LogMessage("Node that N-Line is not recognized", LogLevel.Warning));
+						host.logProvider.Log(LogLevel.Warning, "Node that N-Line is not recognized");
                         break;
 
                     case "CBOX":
                         if (splittedLine.Length != 7)
                         {
-                            Log.Add(new LogMessage("Malformed \"CBOX\" in Line " + i, LogLevel.Warning));
+							host.logProvider.Log(LogLevel.Warning, "Malformed \"CBOX\" in Line " + i);
                             continue;
                         }
-                        Log.Add(new LogMessage("Node that CBOX-Line is not recognized", LogLevel.Warning));
+                        host.logProvider.Log(LogLevel.Warning, "Node that CBOX-Line is not recognized");
                         break;
 
                     case "M":
                         if (splittedLine.Length != 3)
                         {
-                            Log.Add(new LogMessage("Malformed Modelanimation in Line " + i, LogLevel.Warning));
+                            host.logProvider.Log(LogLevel.Warning, "Malformed Modelanimation in Line " + i);
                             continue;
                         }
                         string AnimationName = splittedLine[1].Trim();
@@ -181,12 +183,12 @@ namespace ModelConverter.Plugin.V3o
                     case "A":
                         if (splittedLine.Length != 8)
                         {
-                            Log.Add(new LogMessage("Malformed Modelanimation in Line " + i, LogLevel.Warning));
+                            host.logProvider.Log(LogLevel.Warning, "Malformed Modelanimation in Line " + i);
                             continue;
                         }
                         if (activeFrame == null)
                         {
-                            Log.Add(new LogMessage("No Animation defined in Line " + i, LogLevel.Warning));
+                            host.logProvider.Log(LogLevel.Warning, "No Animation defined in Line " + i);
                             continue;
                         }
                         int vertexId = Convert.ToInt32(splittedLine[1]);
@@ -212,9 +214,8 @@ namespace ModelConverter.Plugin.V3o
             return model;
         }
 
-        public void Write(string filePath, BaseModel model, out List<LogMessage> Log)
+        public void Write(string filePath, BaseModel model)
         {
-            Log = new List<LogMessage>();
             List<string> fileLines = new List<string>();
 
             fileLines.Add("[Exporter=ModelConverter]");

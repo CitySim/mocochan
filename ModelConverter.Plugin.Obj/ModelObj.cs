@@ -12,7 +12,14 @@ namespace ModelConverter.Plugin.Obj
 {
     public class ModelObj : IPlugin
     {
-        public string Name { get { return "Wavefront OBJ"; } }
+		public string Name { get { return "Wavefront OBJ"; } }
+		public string Creator { get { return "Sven Tatter"; } }
+		public string About { get { return "Support for Wavefront OBJ Files"; } }
+
+		public IPluginHost host { get; set; }
+
+		public Version PluginVersion { get { return Assembly.GetExecutingAssembly().GetName().Version; } }
+
         public Dictionary<string, string> fileExtensions
         {
             get
@@ -22,21 +29,12 @@ namespace ModelConverter.Plugin.Obj
                 return extensionsDic;
             }
         }
-		public Version PluginVersion { get { return Assembly.GetExecutingAssembly().GetName().Version; } }
-        public string Creator { get { return "Sven Tatter"; } }
-        public string About { get { return "Support for Wavefront OBJ Files"; } }
 
         public bool canRead { get { return true; } }
         public bool canWrite { get { return true; } }
-        public bool supportReadTexture { get { return true; } }
-        public bool supportWriteTexture { get { return true; } }
-        public bool supportModelAnimation { get { return false; } }
-        public bool supportModelAnimationNormal { get { return false; } }
-        public bool supportModelAnimationTexture { get { return false; } }
 
-        public BaseModel Read(string filePath, out List<LogMessage> Log)
+        public BaseModel Read(string filePath)
         {
-            Log = new List<LogMessage>();
             BaseModel model = new BaseModel();
             string[] fileLines = File.ReadAllLines(filePath);
             List<Vector3> VertexList = new List<Vector3>();
@@ -60,7 +58,7 @@ namespace ModelConverter.Plugin.Obj
                     case "mtllib":
                         if (tokens.Length != 2)
                         {
-                            Log.Add(new LogMessage("Illigal Material Link, Line " + i, LogLevel.Warning));
+							host.logProvider.Log(LogLevel.Warning, "Illigal Material Link, Line " + i);
                             continue;
                         }
                         string mtlPath = Path.Combine(
@@ -93,7 +91,7 @@ namespace ModelConverter.Plugin.Obj
                                 case "map_Kd":
                                     if (material == null)
                                     {
-                                        Log.Add(new LogMessage("Texture without Material, File " + fileLines[i].Substring(7) + ", Line " + i, LogLevel.Warning));
+                                        host.logProvider.Log(LogLevel.Warning, "Texture without Material, File " + fileLines[i].Substring(7) + ", Line " + i);
                                         continue;
                                     }
 									if (mtlTokens.Count() >= 2)
@@ -114,7 +112,7 @@ namespace ModelConverter.Plugin.Obj
                     case "o":
                         if (tokens.Length != 2)
                         {
-                            Log.Add(new LogMessage("Illigal Object, Line " + i, LogLevel.Warning));
+                            host.logProvider.Log(LogLevel.Warning, "Illigal Object, Line " + i);
                             continue;
                         }
                         openGroup = false;
@@ -123,7 +121,7 @@ namespace ModelConverter.Plugin.Obj
                     case "v":
                         if (tokens.Length != 4 && tokens.Length != 5)
                         {
-                            Log.Add(new LogMessage("Illigal Vertex, Line " + i, LogLevel.Warning));
+                            host.logProvider.Log(LogLevel.Warning, "Illigal Vertex, Line " + i);
                             continue;
                         }
                         Vector3 point3D = new Vector3();
@@ -136,7 +134,7 @@ namespace ModelConverter.Plugin.Obj
                     case "vt":
                         if (tokens.Length != 3)
                         {
-                            Log.Add(new LogMessage("Illigal Vertex Texture, Line " + i, LogLevel.Warning));
+                            host.logProvider.Log(LogLevel.Warning, "Illigal Vertex Texture, Line " + i);
                             continue;
                         }
                         Vector2 textureCoordinate = new Vector2();
@@ -148,7 +146,7 @@ namespace ModelConverter.Plugin.Obj
                     case "vn":
                         if (tokens.Length != 4)
                         {
-                            Log.Add(new LogMessage("Illigal Vertex Normals, Line " + i, LogLevel.Warning));
+                            host.logProvider.Log(LogLevel.Warning, "Illigal Vertex Normals, Line " + i);
                             continue;
                         }
                         Vector3 normal = new Vector3();
@@ -161,7 +159,7 @@ namespace ModelConverter.Plugin.Obj
                     case "g":
                         if (tokens.Length != 1 && tokens.Length != 2)
                         {
-                            Log.Add(new LogMessage("Illigal Group, Line " + i, LogLevel.Warning));
+                            host.logProvider.Log(LogLevel.Warning, "Illigal Group, Line " + i);
                             continue;
                         }
                         openGroup = true;
@@ -170,7 +168,7 @@ namespace ModelConverter.Plugin.Obj
                     case "usemtl":
                         if (tokens.Length != 2)
                         {
-                            Log.Add(new LogMessage("Illigal Material use, Line " + i, LogLevel.Warning));
+                            host.logProvider.Log(LogLevel.Warning, "Illigal Material use, Line " + i);
                             continue;
                         }
                         usedMaterial = tokens[1];
@@ -179,15 +177,15 @@ namespace ModelConverter.Plugin.Obj
                     case "s":
                         if (tokens.Length != 2)
                         {
-                            Log.Add(new LogMessage("Illigal Smooth, Line " + i, LogLevel.Warning));
+                            host.logProvider.Log(LogLevel.Warning, "Illigal Smooth, Line " + i);
                             continue;
                         }
                         if (!openGroup)
                         {
-                            Log.Add(new LogMessage("No Group, Line " + i, LogLevel.Warning));
+                            host.logProvider.Log(LogLevel.Warning, "No Group, Line " + i);
                             continue;
                         }
-                        Log.Add(new LogMessage("smooth ignored, Line " + i, LogLevel.Info));
+                        host.logProvider.Log(LogLevel.Info, "smooth ignored, Line " + i);
                         break;
 
                     case "f":
@@ -268,10 +266,8 @@ namespace ModelConverter.Plugin.Obj
             return model;
         }
 
-        public void Write(string filePath, BaseModel model, out List<LogMessage> Log)
+        public void Write(string filePath, BaseModel model)
         {
-            Log = new List<LogMessage>(); Log = new List<LogMessage>();
-
             List<string> fileLines = new List<string>();
 
             fileLines.Add("#Exporter ModelConverter");
