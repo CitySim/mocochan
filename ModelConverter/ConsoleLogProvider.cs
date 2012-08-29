@@ -8,10 +8,19 @@ namespace ModelConverter
 {
 	class ConsoleLogProvider: ILogProvider
 	{
+		int LevelLength = 0;
+
+		public ConsoleLogProvider()
+		{
+			foreach (String name in Enum.GetNames(typeof(LogLevel)))
+			{
+				LevelLength = Math.Max(LevelLength, name.Length);
+			}
+		}
+
 		public void Log(LogLevel lvl, string Message)
 		{
-			// TODO: extend function
-			Console.WriteLine(Message);
+			Console.WriteLine("{0} │ {1}", lvl.ToString().PadRight(LevelLength), Message);
 		}
 	}
 }
