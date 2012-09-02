@@ -15,10 +15,11 @@ namespace ModelConverter
 
 		static void Main(string[] args)
 		{
+			DateTime start = DateTime.Now;
 			Program.config = new Config();
 
 			// TODO: load some optional global config file
-			parseArgumenst(parseCliArgumenst(args));
+			parseCliArgumenst(args);
 			
 			// alls things loaded
 			if (Program.config.writeInfo)
@@ -54,6 +55,15 @@ namespace ModelConverter
 			modelConverter.logProvider = new ConsoleLogProvider();
 
 			modelConverter.loadPlugins(Program.config.PluginDirectory);
+
+			foreach (string file in Program.config.InputFiles)
+			{
+				modelConverter.Convert(file);
+			}
+
+			TimeSpan runTime = DateTime.Now - start;
+			Console.WriteLine();
+			Console.WriteLine("Completed in {0}", runTime);
 		}
 
 		private static Dictionary<string, string> parseCliArgumenst(string[] args)
@@ -62,45 +72,29 @@ namespace ModelConverter
 
 			for (int i = 0; i < args.Length; i++)
 			{
-				if (args[i].Contains('='))
-				{
-					string[] splittedArg = args[i].Split('=');
-					parsedArgs.Add(splittedArg[0], splittedArg[0]);
-				}
-				else
-				{
-					parsedArgs.Add("input", args[i]);
-				}
-			}
-
-			return parsedArgs;
-		}
-
-		private static void parseArgumenst(Dictionary<string, string> parsedArgs)
-		{
-			foreach (KeyValuePair<string, string> arg in parsedArgs)
-			{
-				switch (arg.Key)
+				switch (args[i])
 				{
 					case "--pluginDir":
-						config.PluginDirectory = arg.Value;
+						config.PluginDirectory = args[++i];
 						break;
 
 					case "-s":
 					case "--scale":
-						config.scaleFactor = double.Parse(arg.Value);
+						config.scaleFactor = double.Parse(args[++i]);
 						break;
 
 					case "-o":
 					case "--output":
-						config.Output = arg.Value;
+						config.Output = args[++i];
 						break;
 
 					default: // input
-						config.InputFiles.Add(arg.Value);
+						config.InputFiles.Add(args[i]);
 						break;
 				}
 			}
+
+			return parsedArgs;
 		}
 	}
 }
