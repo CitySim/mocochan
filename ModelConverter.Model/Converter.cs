@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -13,9 +14,12 @@ namespace ModelConverter.Model
 		public Dictionary<string, IPlugin> extensions = new Dictionary<string, IPlugin>();
 		public ILogProvider logProvider { get; set; }
 
-		public Converter()
+		public ConverterSettings settings;
+
+		public Converter(ConverterSettings settings, ILogProvider logProvider)
 		{
-			
+			this.settings = settings;
+			this.logProvider = logProvider;
 		}
 
 		public void loadPlugins(string loadDir)
@@ -56,30 +60,79 @@ namespace ModelConverter.Model
 			}
 		}
 
-		public void Convert(String file)
+		public void Convert(String importFile)
 		{
-			string targetPath = "";
+			string exportFile = "";
 
-			Convert(file, targetPath);
+			if (string.IsNullOrWhiteSpace(settings.outputDir))
+			{
+				// simply replace extension
+				exportFile = Path.ChangeExtension(importFile, settings.exportType);
+			}
+			else
+			{
+				// output dir is set
+				exportFile = Path.Combine(settings.outputDir, Path.GetFileNameWithoutExtension(importFile) + "." + settings.exportType);
+			}
+
+			Convert(importFile, exportFile);
 		}
 
-		public void Convert(String file, String target)
+		public void Convert(String importFile, String exportFile)
 		{
-			logProvider.Log(LogLevel.Info, "─────────────────────────────────────────────────────────────────────");
-			logProvider.Log(LogLevel.Info, "converting " + file);
-			logProvider.Log(LogLevel.Info, "will be saved at " + target);
+			Stopwatch watch = new Stopwatch();
+			watch.Start();
 
-			// get plugin for import
-			string fileExt = Path.GetExtension(file).Substring(1);
-			if (!extensions.ContainsKey(fileExt))
+			logProvider.Log(LogLevel.Info, "─────────────────────────────────────────────────────────────────────");
+			logProvider.Log(LogLevel.Info, "converting " + importFile);
+			logProvider.Log(LogLevel.Info, "will be saved at " + exportFile);
+
+			// a short check for valid paths
+			try
 			{
-				logProvider.Log(LogLevel.Error, "no plugin found for " + fileExt);
+				Path.GetFileName(importFile);
+				Path.GetFileName(exportFile);
+
+				if (importFile.Length == 0 || exportFile.Length == 0)
+				{
+					throw new Exception("Paths need to have a length");
+				}
+			}
+			catch (Exception ex)
+			{
+				logProvider.Log(LogLevel.Error, "seems like a invalid file path\n" + ex.ToString());
 				return;
 			}
 
-			IPlugin importPlugin = extensions[fileExt];
+			// get plugin for import
+			string importExt = Path.GetExtension(importFile).Substring(1);
+			if (!extensions.ContainsKey(importExt))
+			{
+				logProvider.Log(LogLevel.Error, "no plugin found for " + importExt);
+				return;
+			}
 
-			BaseModel imported = importPlugin.Read(file);
+			IPlugin importPlugin = extensions[importExt];
+
+			// get plugin for export
+			string exportExt = Path.GetExtension(exportFile).Substring(1);
+			if (!extensions.ContainsKey(exportExt))
+			{
+				logProvider.Log(LogLevel.Error, "no plugin found for " + exportExt);
+				return;
+			}
+
+			IPlugin exportPlugin = extensions[exportExt];
+
+			logProvider.Log(LogLevel.Info, "reading " + importPlugin.fileExtensions[importExt] + " (" + importExt + ")");
+			BaseModel imported = importPlugin.Read(importFile);
+
+			logProvider.Log(LogLevel.Info, "writing " + exportPlugin.fileExtensions[exportExt] + " (" + exportExt + ")");
+			exportPlugin.Write(exportFile, imported);
+
+			// log time
+			watch.Stop();
+			logProvider.Log(LogLevel.Info, "completed in " + watch.Elapsed.ToString());
 		}
 	}
 }

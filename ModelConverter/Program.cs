@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -15,12 +16,23 @@ namespace ModelConverter
 
 		static void Main(string[] args)
 		{
-			DateTime start = DateTime.Now;
-			Program.config = new Config();
+			Stopwatch watch = new Stopwatch();
+			watch.Start();
 
-			// TODO: load some optional global config file
-			parseCliArgumenst(args);
-			
+			Program.config = new Config();
+			bool argsOK = true;
+
+			try
+			{
+				// TODO: load some optional global config file
+				parseCliArgumenst(args);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.ToString());
+				argsOK = false;
+			}
+	
 			// alls things loaded
 			if (Program.config.writeInfo)
 			{
@@ -35,25 +47,43 @@ namespace ModelConverter
 				Console.WriteLine("At least one input File is needed");
 				Console.WriteLine();
 				Program.config.writeHelp = true;
+				argsOK = false;
+			}
+
+			if (string.IsNullOrWhiteSpace(Program.config.exportType))
+			{
+				Console.WriteLine("export Type (-e) must be set");
+				Console.WriteLine();
+				Program.config.writeHelp = true;
+				argsOK = false;
 			}
 
 			if (Program.config.writeHelp)
 			{
 				Console.WriteLine("Basic Usage:");
-				Console.WriteLine(" ModelConverter [options] inputFile.ext");
+				Console.WriteLine(" ModelConverter -e [options] inputFile.ext");
 				Console.WriteLine();
 				Console.WriteLine("List of avaible options:");
-				Console.WriteLine("        --pluginDir : Allows you to load Plugin from a Directory different than");
-				Console.WriteLine("                      the current Folder.");
-				Console.WriteLine(" -s     --scale     : Scale the model by Factor. 2 = double size, 0.5 half size");
-				Console.WriteLine(" -o     --output    : Set output Folder. Default same as file origin.");
+				Console.WriteLine(" -e     --exportType : Extension of File Type to the exported to.");
+				Console.WriteLine("        --pluginDir  : Allows you to load Plugin from a Directory different than");
+				Console.WriteLine("                       the current Folder.");
+				Console.WriteLine(" -s     --scale      : Scale the model by Factor. 2 = double size, 0.5 half size");
+				Console.WriteLine(" -o     --output     : Set output Folder. Default same as file origin.");
 
 				Console.WriteLine();
 			}
 
-			Converter modelConverter = new Converter();
-			modelConverter.logProvider = new ConsoleLogProvider();
+			if (!argsOK)
+			{
+				// a message shouls be already be printed
+				return;
+			}
 
+			ConverterSettings settings = new ConverterSettings();
+			settings.outputDir = Program.config.outputDir;
+			settings.exportType = Program.config.exportType;
+
+			Converter modelConverter = new Converter(settings, new ConsoleLogProvider());
 			modelConverter.loadPlugins(Program.config.PluginDirectory);
 
 			foreach (string file in Program.config.InputFiles)
@@ -61,9 +91,8 @@ namespace ModelConverter
 				modelConverter.Convert(file);
 			}
 
-			TimeSpan runTime = DateTime.Now - start;
 			Console.WriteLine();
-			Console.WriteLine("Completed in {0}", runTime);
+			Console.WriteLine("Completed in {0}", watch.Elapsed.ToString());
 		}
 
 		private static Dictionary<string, string> parseCliArgumenst(string[] args)
@@ -72,6 +101,11 @@ namespace ModelConverter
 
 			for (int i = 0; i < args.Length; i++)
 			{
+				if (args[i].StartsWith("-") && config.InputFiles.Count > 0)
+				{
+					throw new Exception("Invaled options, use --help or -h to see options");
+				}
+
 				switch (args[i])
 				{
 					case "--pluginDir":
@@ -85,7 +119,7 @@ namespace ModelConverter
 
 					case "-o":
 					case "--output":
-						string path = args[i];
+						string path = args[++i];
 
 						while (path.StartsWith("\"") && !path.EndsWith("\""))
 						{
@@ -97,10 +131,20 @@ namespace ModelConverter
 							path = path.Substring(1, path.Length - 1);
 						}
 
-						config.Output = args[++i];
+						config.outputDir = path;
+						break;
+
+					case "-e":
+					case "--exportType":
+						config.exportType = args[++i];
 						break;
 
 					default: // input
+						if (args[i].StartsWith("-"))
+						{
+							throw new Exception("Invaled option " + args[i] + ", use --help or -h to see options");
+						}
+
 						string file = args[i];
 
 						while (file.StartsWith("\"") && !file.EndsWith("\""))

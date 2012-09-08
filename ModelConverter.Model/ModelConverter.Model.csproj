@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
     <Compile Include="Converter.cs" />
+    <Compile Include="ConverterSettings.cs" />
     <Compile Include="ILogProvider.cs" />
     <Compile Include="IPluginHost.cs" />
     <Compile Include="LogMessage.cs" />
