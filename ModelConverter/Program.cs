@@ -85,11 +85,35 @@ namespace ModelConverter
 
 					case "-o":
 					case "--output":
+						string path = args[i];
+
+						while (path.StartsWith("\"") && !path.EndsWith("\""))
+						{
+							path += args[++i];
+						}
+
+						if (path.StartsWith("\"") && path.EndsWith("\""))
+						{
+							path = path.Substring(1, path.Length - 1);
+						}
+
 						config.Output = args[++i];
 						break;
 
 					default: // input
-						config.InputFiles.Add(args[i]);
+						string file = args[i];
+
+						while (file.StartsWith("\"") && !file.EndsWith("\""))
+						{
+							file += args[++i];
+						}
+
+						if (file.StartsWith("\"") && file.EndsWith("\""))
+						{
+							file = file.Substring(1, file.Length - 1);
+						}
+
+						config.InputFiles.Add(file);
 						break;
 				}
 			}
