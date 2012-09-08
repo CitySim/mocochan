@@ -34,6 +34,16 @@ namespace ModelConverter.Plugin.V3o
 
         public BaseModel Read(string filePath)
         {
+			// check for packed file
+			FileStream fileStream = File.OpenRead(filePath);
+			if (fileStream.ReadByte() == 0xd3 && fileStream.ReadByte() == 0xc0)
+			{
+				host.logProvider.Log(LogLevel.Fatal, "File looks packed. Please unpack first with Emergency 4 Editor.");
+				fileStream.Close();
+				return new BaseModel();
+			}
+			fileStream.Close();
+
             string[] fileLines = File.ReadAllLines(filePath);
             BaseModel model = new BaseModel();
 
