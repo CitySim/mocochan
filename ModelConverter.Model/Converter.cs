@@ -70,14 +70,16 @@ namespace ModelConverter.Model
 			logProvider.Log(LogLevel.Info, "will be saved at " + target);
 
 			// get plugin for import
-			if (!extensions.ContainsKey(Path.GetExtension(file)))
+			string fileExt = Path.GetExtension(file).Substring(1);
+			if (!extensions.ContainsKey(fileExt))
 			{
-				logProvider.Log(LogLevel.Error, "no plugin found for " + Path.GetExtension(file));
+				logProvider.Log(LogLevel.Error, "no plugin found for " + fileExt);
 				return;
 			}
 
-			IPlugin importPlugin = extensions[Path.GetExtension(file)];
+			IPlugin importPlugin = extensions[fileExt];
 
+			BaseModel imported = importPlugin.Read(file);
 		}
 	}
 }

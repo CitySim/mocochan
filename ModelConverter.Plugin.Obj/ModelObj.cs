@@ -33,6 +33,8 @@ namespace ModelConverter.Plugin.Obj
         public bool canRead { get { return true; } }
         public bool canWrite { get { return true; } }
 
+		private string MaterialDefaultName = "emptyMaterialName";
+
         public BaseModel Read(string filePath)
         {
             BaseModel model = new BaseModel();
@@ -85,8 +87,17 @@ namespace ModelConverter.Plugin.Obj
                                     if (material != null)
                                         model.Materials.Add(material.Name, material);
                                     material = new Material();
-                                    material.Name = mtlTokens[1];
-                                    break;
+
+									if (mtlTokens.Length == 1)
+									{
+										// at least blender exports obj files mit empty material name...
+										material.Name = MaterialDefaultName;
+									}
+									else
+									{
+										material.Name = mtlTokens[1];
+                                    }
+									break;
 
                                 case "map_Kd":
                                     if (material == null)
@@ -166,12 +177,19 @@ namespace ModelConverter.Plugin.Obj
                         break;
 
                     case "usemtl":
-                        if (tokens.Length != 2)
+                        if (tokens.Length == 1)
                         {
+							usedMaterial = MaterialDefaultName;
+						}
+						else if (tokens.Length == 2)
+						{
+							usedMaterial = tokens[1];
+						}
+						else
+						{
                             host.logProvider.Log(LogLevel.Warning, "Illigal Material use, Line " + i);
                             continue;
                         }
-                        usedMaterial = tokens[1];
                         break;
 
                     case "s":
