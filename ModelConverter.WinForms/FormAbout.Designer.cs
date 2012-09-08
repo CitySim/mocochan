@@ -30,9 +30,9 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAbout));
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.labelVersion = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -44,14 +44,23 @@
 			// panel1
 			// 
 			this.panel1.BackColor = System.Drawing.Color.White;
-			this.panel1.Controls.Add(this.label2);
+			this.panel1.Controls.Add(this.labelVersion);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.pictureBox1);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(641, 156);
+			this.panel1.Size = new System.Drawing.Size(634, 156);
 			this.panel1.TabIndex = 0;
+			// 
+			// labelVersion
+			// 
+			this.labelVersion.AutoSize = true;
+			this.labelVersion.Location = new System.Drawing.Point(151, 58);
+			this.labelVersion.Name = "labelVersion";
+			this.labelVersion.Size = new System.Drawing.Size(77, 13);
+			this.labelVersion.TabIndex = 3;
+			this.labelVersion.Text = "Version: x.x.x.x";
 			// 
 			// label1
 			// 
@@ -73,15 +82,6 @@
 			this.pictureBox1.TabIndex = 1;
 			this.pictureBox1.TabStop = false;
 			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(151, 58);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(77, 13);
-			this.label2.TabIndex = 3;
-			this.label2.Text = "Version: x.x.x.x";
-			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
@@ -100,7 +100,7 @@
             this.columnHeader1});
 			this.listView1.Location = new System.Drawing.Point(12, 175);
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(617, 180);
+			this.listView1.Size = new System.Drawing.Size(610, 146);
 			this.listView1.TabIndex = 2;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
@@ -112,18 +112,19 @@
 			// buttonOK
 			// 
 			this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonOK.Location = new System.Drawing.Point(554, 361);
+			this.buttonOK.Location = new System.Drawing.Point(547, 327);
 			this.buttonOK.Name = "buttonOK";
 			this.buttonOK.Size = new System.Drawing.Size(75, 23);
 			this.buttonOK.TabIndex = 3;
 			this.buttonOK.Text = "OK";
 			this.buttonOK.UseVisualStyleBackColor = true;
+			this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
 			// 
 			// FormAbout
 			// 
 			this.AcceptButton = this.buttonOK;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(641, 396);
+			this.ClientSize = new System.Drawing.Size(634, 362);
 			this.Controls.Add(this.buttonOK);
 			this.Controls.Add(this.listView1);
 			this.Controls.Add(this.label3);
@@ -131,6 +132,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
+			this.MinimumSize = new System.Drawing.Size(650, 400);
 			this.Name = "FormAbout";
 			this.Text = "About ModelConverter";
 			this.panel1.ResumeLayout(false);
@@ -146,7 +148,7 @@
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label labelVersion;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.ListView listView1;
 		private System.Windows.Forms.ColumnHeader columnHeader1;

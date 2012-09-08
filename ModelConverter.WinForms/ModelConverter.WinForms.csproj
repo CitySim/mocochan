@@ -94,6 +94,12 @@
   <ItemGroup>
     <None Include="Resources\ModelConverter128.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModelConverter.Model\ModelConverter.Model.csproj">
+      <Project>{2465bc4f-590d-476a-a965-b4d6bd548fe5}</Project>
+      <Name>ModelConverter.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
