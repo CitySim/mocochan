@@ -29,15 +29,17 @@ namespace ModelConverter.Plugin.X
         }
 
         public bool canRead { get { return false; } }
-        public bool canWrite { get { return false; } } // <--------------- enable writing of X Files here
+        public bool canWrite { get { return false; } }
 
         public BaseModel Read(string filePath)
         {
-            return null;
+			throw new NotImplementedException();
         }
 
         public void Write(string filePath, BaseModel model)
         {
+			throw new NotImplementedException();
+
             List<string> fileLines = new List<string>();
 
             fileLines.Add("xof 0302txt 0032");
