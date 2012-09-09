@@ -5,6 +5,7 @@ using System.Text;
 using ModelConverter.Model;
 using System.Reflection;
 using System.Xml;
+using ModelConverter.Plugin.Collada.ColladaLib;
 
 namespace ModelConverter.Plugin.Collada
 {
@@ -50,7 +51,8 @@ namespace ModelConverter.Plugin.Collada
 
         public void Write(string filePath, BaseModel model)
         {
-            throw new NotImplementedException();
+			ColladaWriter writer = new ColladaWriter();
+			writer.Write(model, filePath);
         }
     }
 }
