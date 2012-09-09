@@ -93,6 +93,10 @@ namespace ModelConverter
 
 			Console.WriteLine();
 			Console.WriteLine("Completed in {0}", watch.Elapsed.ToString());
+
+#if DEBUG
+			Console.ReadKey();
+#endif
 		}
 
 		private static Dictionary<string, string> parseCliArgumenst(string[] args)
