@@ -56,9 +56,9 @@
   <Target Name="BeforeBuild">
   </Target> -->
   <Target Name="AfterBuild">
-    <ItemGroup>
-      <BuildFiles Include="$(TargetDir)*.*" />
-    </ItemGroup>
+    <CreateItem Include="$(TargetDir)*.*">
+      <Output TaskParameter="Include" ItemName="BuildFiles" />
+    </CreateItem>
     <Copy SourceFiles="@(BuildFiles)" DestinationFolder="$(SolutionDir)ModelConverter\bin\$(ConfigurationName)" />
     <Copy SourceFiles="@(BuildFiles)" DestinationFolder="$(SolutionDir)ModelConverter.WinForms\bin\$(ConfigurationName)" />
   </Target>
