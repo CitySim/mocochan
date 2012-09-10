@@ -53,12 +53,12 @@
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
-  </Target> -->
+  </Target>
   <Target Name="AfterBuild">
     <ItemGroup>
       <BuildFiles Include="$(TargetDir)*.*" />
     </ItemGroup>
     <Copy SourceFiles="@(BuildFiles)" DestinationFolder="$(SolutionDir)ModelConverter\bin\$(ConfigurationName)" />
     <Copy SourceFiles="@(BuildFiles)" DestinationFolder="$(SolutionDir)ModelConverter.WinForms\bin\$(ConfigurationName)" />
-  </Target>
+  </Target> -->
 </Project>
