@@ -28,15 +28,20 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ModelConverter", System.Windows.Forms.HorizontalAlignment.Left);
+			System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Framework", System.Windows.Forms.HorizontalAlignment.Left);
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAbout));
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.labelVersion = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.buttonOK = new System.Windows.Forms.Button();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
@@ -44,6 +49,7 @@
 			// panel1
 			// 
 			this.panel1.BackColor = System.Drawing.Color.White;
+			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Controls.Add(this.labelVersion);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Controls.Add(this.pictureBox1);
@@ -72,16 +78,6 @@
 			this.label1.TabIndex = 2;
 			this.label1.Text = "ModelConverter";
 			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.Image = global::ModelConverter.WinForms.Properties.Resources.ModelConverter128;
-			this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(128, 128);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-			this.pictureBox1.TabIndex = 1;
-			this.pictureBox1.TabStop = false;
-			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
@@ -97,7 +93,19 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+			this.listView1.FullRowSelect = true;
+			listViewGroup1.Header = "ModelConverter";
+			listViewGroup1.Name = "modelconverter";
+			listViewGroup1.Tag = "modelconverter";
+			listViewGroup2.Header = "Framework";
+			listViewGroup2.Name = "framework";
+			listViewGroup2.Tag = "framework";
+			this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1,
+            listViewGroup2});
 			this.listView1.Location = new System.Drawing.Point(12, 175);
 			this.listView1.Name = "listView1";
 			this.listView1.Size = new System.Drawing.Size(610, 146);
@@ -108,6 +116,7 @@
 			// columnHeader1
 			// 
 			this.columnHeader1.Text = "Name";
+			this.columnHeader1.Width = 282;
 			// 
 			// buttonOK
 			// 
@@ -119,6 +128,37 @@
 			this.buttonOK.Text = "OK";
 			this.buttonOK.UseVisualStyleBackColor = true;
 			this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
+			// 
+			// textBox1
+			// 
+			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.textBox1.Location = new System.Drawing.Point(154, 74);
+			this.textBox1.Multiline = true;
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(468, 66);
+			this.textBox1.TabIndex = 4;
+			this.textBox1.Text = "using free Icon from Glyphicons:\r\nhttp://glyphicons.com/";
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Image = global::ModelConverter.WinForms.Properties.Resources.ModelConverter128;
+			this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(128, 128);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+			this.pictureBox1.TabIndex = 1;
+			this.pictureBox1.TabStop = false;
+			// 
+			// columnHeader2
+			// 
+			this.columnHeader2.Text = "Version";
+			// 
+			// columnHeader3
+			// 
+			this.columnHeader3.Text = "File";
+			this.columnHeader3.Width = 391;
 			// 
 			// FormAbout
 			// 
@@ -153,5 +193,8 @@
 		private System.Windows.Forms.ListView listView1;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.Button buttonOK;
+		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.ColumnHeader columnHeader2;
+		private System.Windows.Forms.ColumnHeader columnHeader3;
 	}
 }

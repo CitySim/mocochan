@@ -3,25 +3,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ModelConverter.Model;
+using ModelConverter.WinForms.Options;
 
 namespace ModelConverter.WinForms
 {
 	public partial class FormMain : Form
 	{
 		Converter converter;
+		ConvertSettings convertSettings;
+		FormLog logWindow;
 
 		public FormMain()
 		{
 			InitializeComponent();
 
-			converter = new Converter(new ConverterSettings(), null);
+			logWindow = new FormLog();
+			logWindow.Show();
 
-			propertyGrid1.SelectedObject = converter.settings;
+			converter = new Converter(new ConverterSettings(), logWindow);
+			convertSettings = new ConvertSettings(converter);
+			converter.settings = convertSettings.converterSettings;
+
+			converter.loadPlugins(Path.GetFullPath("."));
+
+			propertyGrid1.SelectedObject = convertSettings;
 		}
 
 		private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -32,6 +43,58 @@ namespace ModelConverter.WinForms
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Close();
+		}
+
+		private void toolStripButton1_Click(object sender, EventArgs e)
+		{
+			OpenFileDialog openFiles = new OpenFileDialog();
+			openFiles.CheckFileExists = true;
+			openFiles.Multiselect = true;
+			openFiles.Title = "Select Models to import";
+
+			DialogResult result = openFiles.ShowDialog();
+
+			if (result == DialogResult.Cancel)
+			{
+				return;
+			}
+
+			foreach (string file in openFiles.FileNames)
+			{
+				string ext = Path.GetExtension(file).Substring(1);
+				if (!converter.extensions.ContainsKey(ext))
+				{
+					MessageBox.Show("Found no Plugin for " + ext, "No Plugin",  MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+					continue;
+				}
+
+				IPlugin plugin = converter.extensions[ext];
+				listView1.Items.Add(new ListViewItem(new string[] { "", file, converter.getTargetPath(file), plugin.Name }));
+			}
+		}
+
+		private void logToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			logToolStripMenuItem.Checked = !logToolStripMenuItem.Checked;
+
+			if (logToolStripMenuItem.Checked)
+			{
+				logWindow.Show();
+			}
+			else
+			{
+				logWindow.Hide();
+			}
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			foreach (ListViewItem item in listView1.Items)
+			{
+				item.ImageIndex = 0;
+				converter.Convert(item.Name);
+				item.ImageIndex = 1;
+			}
 		}
 	}
 }

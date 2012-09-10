@@ -51,16 +51,26 @@
     <Compile Include="FormAbout.Designer.cs">
       <DependentUpon>FormAbout.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLog.Designer.cs">
+      <DependentUpon>FormLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Options\ConvertSettings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLog.resx">
+      <DependentUpon>FormLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -99,6 +109,27 @@
       <Project>{2465bc4f-590d-476a-a965-b4d6bd548fe5}</Project>
       <Name>ModelConverter.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ModelConverter24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons_190_circle_plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons_191_circle_minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons_195_circle_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons_023_cogwheels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons_020_home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons_280_settings.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
