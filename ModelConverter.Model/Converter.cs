@@ -60,22 +60,23 @@ namespace ModelConverter.Model
 			}
 		}
 
-		public void Convert(String importFile)
+		public string getTargetPath(string file)
 		{
-			string exportFile = "";
-
 			if (string.IsNullOrWhiteSpace(settings.outputDir))
 			{
 				// simply replace extension
-				exportFile = Path.ChangeExtension(importFile, settings.exportType);
+				return Path.ChangeExtension(file, settings.exportType);
 			}
 			else
 			{
 				// output dir is set
-				exportFile = Path.Combine(settings.outputDir, Path.GetFileNameWithoutExtension(importFile) + "." + settings.exportType);
+				return Path.Combine(settings.outputDir, Path.GetFileNameWithoutExtension(file) + "." + settings.exportType);
 			}
+		}
 
-			Convert(importFile, exportFile);
+		public void Convert(String importFile)
+		{
+			Convert(importFile, getTargetPath(importFile));
 		}
 
 		public void Convert(String importFile, String exportFile)
