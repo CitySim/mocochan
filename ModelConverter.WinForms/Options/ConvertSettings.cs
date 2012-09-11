@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,8 @@ namespace ModelConverter.WinForms.Options
 		{
 			this.converter = converter;
 			this.converterSettings = this.converter.settings;
+
+			ExtensionConverter.converter = this.converter;
 		}
 
 		public string outputDirectory
@@ -32,6 +35,7 @@ namespace ModelConverter.WinForms.Options
 			}
 		}
 
+		[TypeConverter(typeof(ExtensionConverter))]
 		public string exportType
 		{
 			get { return converterSettings.exportType; }

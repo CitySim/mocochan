@@ -44,3 +44,5 @@ publish
 *.Publish.xml
 
 /ModelConverter.Old
+/_TeamCity.ModelConverter
+
