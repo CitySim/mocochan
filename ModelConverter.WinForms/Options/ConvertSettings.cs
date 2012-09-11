@@ -21,6 +21,7 @@ namespace ModelConverter.WinForms.Options
 			ExtensionConverter.converter = this.converter;
 		}
 
+		[EditorAttribute(typeof(DirectoryEditor),typeof(System.Drawing.Design.UITypeEditor))]
 		public string outputDirectory
 		{
 			get { return converterSettings.outputDir; }
