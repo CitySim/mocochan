@@ -28,7 +28,6 @@ namespace ModelConverter.WinForms
 
 			converter = new Converter(new ConverterSettings(), logWindow);
 			convertSettings = new ConvertSettings(converter);
-			converter.settings = convertSettings.converterSettings;
 
 			converter.loadPlugins(Path.GetFullPath("."));
 
@@ -92,7 +91,7 @@ namespace ModelConverter.WinForms
 			foreach (ListViewItem item in listView1.Items)
 			{
 				item.ImageIndex = 0;
-				converter.Convert(item.Name);
+				converter.Convert(item.SubItems[1].Text);
 				item.ImageIndex = 1;
 			}
 		}

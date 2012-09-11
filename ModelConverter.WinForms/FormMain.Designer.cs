@@ -209,7 +209,7 @@
 			this.toolStripButton1.Image = global::ModelConverter.WinForms.Properties.Resources.glyphicons_190_circle_plus;
 			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton1.Name = "toolStripButton1";
-			this.toolStripButton1.Size = new System.Drawing.Size(29, 20);
+			this.toolStripButton1.Size = new System.Drawing.Size(21, 20);
 			this.toolStripButton1.Text = "+";
 			this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
 			// 
@@ -219,7 +219,7 @@
 			this.toolStripButton2.Image = global::ModelConverter.WinForms.Properties.Resources.glyphicons_191_circle_minus;
 			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton2.Name = "toolStripButton2";
-			this.toolStripButton2.Size = new System.Drawing.Size(29, 20);
+			this.toolStripButton2.Size = new System.Drawing.Size(21, 20);
 			this.toolStripButton2.Text = "-";
 			// 
 			// button1

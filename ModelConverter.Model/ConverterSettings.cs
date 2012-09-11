@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ModelConverter.Model
 {
-	public struct ConverterSettings
+	public class ConverterSettings
 	{
 		/// <summary>
 		/// if empty exported Files are saved in same Folder as imported one

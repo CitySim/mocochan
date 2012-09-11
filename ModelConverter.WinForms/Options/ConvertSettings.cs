@@ -16,7 +16,7 @@ namespace ModelConverter.WinForms.Options
 		public ConvertSettings(Converter converter)
 		{
 			this.converter = converter;
-			this.converterSettings = this.converter.settings;
+			this.converterSettings = converter.settings;
 
 			ExtensionConverter.converter = this.converter;
 		}
