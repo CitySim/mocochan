@@ -72,7 +72,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
 			this.Name = "FormLog";
 			this.Text = "Log";
-			this.Load += new System.EventHandler(this.FormLog_Load);
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormLog_FormClosing);
 			this.ResumeLayout(false);
 
 		}

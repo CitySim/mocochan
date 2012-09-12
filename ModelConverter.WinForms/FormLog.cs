@@ -17,14 +17,15 @@ namespace ModelConverter.WinForms
 			InitializeComponent();
 		}
 
-		private void FormLog_Load(object sender, EventArgs e)
-		{
-
-		}
-
 		public void Log(LogLevel lvl, string Message)
 		{
 			listView1.Items.Insert(0, new ListViewItem(new string[] {DateTime.Now.ToString(), lvl.ToString(), Message}));
+		}
+
+		private void FormLog_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			e.Cancel = true;
+			Hide();
 		}
 	}
 }

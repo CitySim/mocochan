@@ -24,6 +24,7 @@ namespace ModelConverter.WinForms
 			InitializeComponent();
 
 			logWindow = new FormLog();
+			logWindow.VisibleChanged += logWindow_VisibleChanged;
 			logWindow.Show();
 
 			converter = new Converter(new ConverterSettings(), logWindow);
@@ -32,6 +33,11 @@ namespace ModelConverter.WinForms
 			converter.loadPlugins(Path.GetFullPath("."));
 
 			propertyGrid1.SelectedObject = convertSettings;
+		}
+
+		void logWindow_VisibleChanged(object sender, EventArgs e)
+		{
+			logToolStripMenuItem.Checked = logWindow.Visible;
 		}
 
 		private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -74,15 +80,13 @@ namespace ModelConverter.WinForms
 
 		private void logToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			logToolStripMenuItem.Checked = !logToolStripMenuItem.Checked;
-
 			if (logToolStripMenuItem.Checked)
 			{
-				logWindow.Show();
+				logWindow.Hide();
 			}
 			else
 			{
-				logWindow.Hide();
+				logWindow.Show();
 			}
 		}
 
