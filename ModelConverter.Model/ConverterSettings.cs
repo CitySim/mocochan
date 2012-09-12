@@ -17,5 +17,13 @@ namespace ModelConverter.Model
 		/// file extension of format to be exported to
 		/// </summary>
 		public string exportType;
+
+		/// <summary>
+		/// factor for scaling models.
+		/// 0.5 => 50% half size
+		/// 1.0 => 100% original size
+		/// 2.0 => 200% double size
+		/// </summary>
+		public float scaleFactor = 1.0f;
 	}
 }

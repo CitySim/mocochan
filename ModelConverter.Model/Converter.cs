@@ -128,6 +128,12 @@ namespace ModelConverter.Model
 			logProvider.Log(LogLevel.Info, "reading " + importPlugin.fileExtensions[importExt] + " (" + importExt + ")");
 			BaseModel imported = importPlugin.Read(importFile);
 
+			// processing
+			if (settings.scaleFactor != 1.0f)
+			{
+				imported.Scale(settings.scaleFactor);
+			}
+
 			logProvider.Log(LogLevel.Info, "writing " + exportPlugin.fileExtensions[exportExt] + " (" + exportExt + ")");
 			exportPlugin.Write(exportFile, imported);
 

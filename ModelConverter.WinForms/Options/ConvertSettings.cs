@@ -50,5 +50,15 @@ namespace ModelConverter.WinForms.Options
 				converterSettings.exportType = value;
 			}
 		}
+
+		[DefaultValue(1.0f)]
+		public float scaleFactor
+		{
+			get { return converterSettings.scaleFactor; }
+			set
+			{
+				converterSettings.scaleFactor = value;
+			}
+		}
 	}
 }
