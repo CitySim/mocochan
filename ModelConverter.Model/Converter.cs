@@ -115,6 +115,12 @@ namespace ModelConverter.Model
 
 			IPlugin importPlugin = extensions[importExt];
 
+			if (!importPlugin.canRead)
+			{
+				logProvider.Log(LogLevel.Error, string.Format("Import-Plugin {0} cant read files", importPlugin.Name));
+				return;
+			}
+
 			// get plugin for export
 			string exportExt = Path.GetExtension(exportFile).Substring(1);
 			if (!extensions.ContainsKey(exportExt))
@@ -124,9 +130,25 @@ namespace ModelConverter.Model
 			}
 
 			IPlugin exportPlugin = extensions[exportExt];
+			
+			if (!importPlugin.canWrite)
+			{
+				logProvider.Log(LogLevel.Error, string.Format("Export-Plugin {0} cant write files", importPlugin.Name));
+				return;
+			}
 
+			// convertings starts here
 			logProvider.Log(LogLevel.Info, "reading " + importPlugin.fileExtensions[importExt] + " (" + importExt + ")");
-			BaseModel imported = importPlugin.Read(importFile);
+			BaseModel imported;
+			try
+			{
+				imported = importPlugin.Read(importFile);
+			}
+			catch (Exception ex)
+			{
+				logProvider.Log(LogLevel.Error, "exception while reading File\n" + ex.ToString());
+				return;
+			}
 
 			// processing
 			if (settings.scaleFactor != 1.0f)
@@ -135,7 +157,15 @@ namespace ModelConverter.Model
 			}
 
 			logProvider.Log(LogLevel.Info, "writing " + exportPlugin.fileExtensions[exportExt] + " (" + exportExt + ")");
-			exportPlugin.Write(exportFile, imported);
+			try
+			{
+				exportPlugin.Write(exportFile, imported);
+			}
+			catch (Exception ex)
+			{
+				logProvider.Log(LogLevel.Error, "exception while writing File\n" + ex.ToString());
+				return;
+			}
 
 			// log time
 			watch.Stop();
