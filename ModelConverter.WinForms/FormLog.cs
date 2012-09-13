@@ -19,7 +19,8 @@ namespace ModelConverter.WinForms
 
 		public void Log(LogLevel lvl, string Message)
 		{
-			listView1.Items.Insert(0, new ListViewItem(new string[] {DateTime.Now.ToString(), lvl.ToString(), Message}));
+			listView1.Items.Add(new ListViewItem(new string[] {DateTime.Now.ToString(), lvl.ToString(), Message}));
+			listView1.EnsureVisible(listView1.Items.Count - 1);
 		}
 
 		private void FormLog_FormClosing(object sender, FormClosingEventArgs e)
