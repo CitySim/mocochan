@@ -66,17 +66,17 @@ namespace ModelConverter.Plugin.Collada.ColladaLib
 			doc.WriteAttributeString("stride", "3");
 			
 			doc.WriteStartElement("param");
-			doc.WriteAttributeString("meter", "X");
+			doc.WriteAttributeString("name", "X");
 			doc.WriteAttributeString("type", "float");
 			doc.WriteEndElement();
 
 			doc.WriteStartElement("param");
-			doc.WriteAttributeString("meter", "Y");
+			doc.WriteAttributeString("name", "Y");
 			doc.WriteAttributeString("type", "float");
 			doc.WriteEndElement();
 			
 			doc.WriteStartElement("param");
-			doc.WriteAttributeString("meter", "Z");
+			doc.WriteAttributeString("name", "Z");
 			doc.WriteAttributeString("type", "float");
 			doc.WriteEndElement();
 
@@ -110,17 +110,17 @@ namespace ModelConverter.Plugin.Collada.ColladaLib
 			doc.WriteAttributeString("stride", "3");
 
 			doc.WriteStartElement("param");
-			doc.WriteAttributeString("meter", "X");
+			doc.WriteAttributeString("name", "X");
 			doc.WriteAttributeString("type", "float");
 			doc.WriteEndElement();
 
 			doc.WriteStartElement("param");
-			doc.WriteAttributeString("meter", "Y");
+			doc.WriteAttributeString("name", "Y");
 			doc.WriteAttributeString("type", "float");
 			doc.WriteEndElement();
 
 			doc.WriteStartElement("param");
-			doc.WriteAttributeString("meter", "Z");
+			doc.WriteAttributeString("name", "Z");
 			doc.WriteAttributeString("type", "float");
 			doc.WriteEndElement();
 
@@ -153,12 +153,12 @@ namespace ModelConverter.Plugin.Collada.ColladaLib
 			doc.WriteAttributeString("stride", "3");
 
 			doc.WriteStartElement("param");
-			doc.WriteAttributeString("meter", "S");
+			doc.WriteAttributeString("name", "S");
 			doc.WriteAttributeString("type", "float");
 			doc.WriteEndElement();
 
 			doc.WriteStartElement("param");
-			doc.WriteAttributeString("meter", "T");
+			doc.WriteAttributeString("name", "T");
 			doc.WriteAttributeString("type", "float");
 			doc.WriteEndElement();
 
