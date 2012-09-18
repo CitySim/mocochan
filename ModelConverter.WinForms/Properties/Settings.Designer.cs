@@ -22,5 +22,29 @@ namespace ModelConverter.WinForms.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string lastOutputDir {
+            get {
+                return ((string)(this["lastOutputDir"]));
+            }
+            set {
+                this["lastOutputDir"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string lastExportType {
+            get {
+                return ((string)(this["lastExportType"]));
+            }
+            set {
+                this["lastExportType"] = value;
+            }
+        }
     }
 }

@@ -32,6 +32,8 @@ namespace ModelConverter.WinForms
 
 			converter.loadPlugins(Path.GetFullPath("."));
 
+			convertSettings.loadSettings();
+
 			propertyGrid1.SelectedObject = convertSettings;
 		}
 
@@ -98,6 +100,14 @@ namespace ModelConverter.WinForms
 				converter.Convert(item.SubItems[1].Text);
 				item.ImageIndex = 1;
 			}
+		}
+
+		private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			Properties.Settings.Default.lastOutputDir = converter.settings.outputDir;
+			Properties.Settings.Default.lastExportType = converter.settings.exportType;
+
+			Properties.Settings.Default.Save();
 		}
 	}
 }

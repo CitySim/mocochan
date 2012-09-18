@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Text;
 using ModelConverter.Model;
 
 namespace ModelConverter.WinForms.Options
@@ -19,6 +17,21 @@ namespace ModelConverter.WinForms.Options
 			this.converterSettings = converter.settings;
 
 			ExtensionConverter.converter = this.converter;
+		}
+
+		public void loadSettings()
+		{
+			// try reading settings
+			try
+			{
+				outputDirectory = Properties.Settings.Default.lastOutputDir;
+			}
+			catch { }
+			try
+			{
+				exportType = Properties.Settings.Default.lastExportType;
+			}
+			catch { }
 		}
 
 		[EditorAttribute(typeof(DirectoryEditor),typeof(System.Drawing.Design.UITypeEditor))]
@@ -39,7 +52,17 @@ namespace ModelConverter.WinForms.Options
 		[TypeConverter(typeof(ExtensionConverter))]
 		public string exportType
 		{
-			get { return converterSettings.exportType; }
+			get
+			{
+				if (string.IsNullOrEmpty(converterSettings.exportType))
+				{
+					return converterSettings.exportType;
+				}
+				else
+				{
+					return converterSettings.exportType + " - " + converter.extensions[converterSettings.exportType].Name;
+				}
+			}
 			set
 			{
 				if (!converter.extensions.ContainsKey(value))

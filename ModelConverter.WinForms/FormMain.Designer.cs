@@ -94,7 +94,7 @@
 			this.logToolStripMenuItem.Checked = true;
 			this.logToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.logToolStripMenuItem.Name = "logToolStripMenuItem";
-			this.logToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.logToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
 			this.logToolStripMenuItem.Text = "Log";
 			this.logToolStripMenuItem.Click += new System.EventHandler(this.logToolStripMenuItem_Click);
 			// 
@@ -102,19 +102,19 @@
 			// 
 			this.settingsToolStripMenuItem.Image = global::ModelConverter.WinForms.Properties.Resources.glyphicons_280_settings;
 			this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-			this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
 			this.settingsToolStripMenuItem.Text = "Settings";
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(113, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Image = global::ModelConverter.WinForms.Properties.Resources.glyphicons_020_home;
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -319,6 +319,7 @@
 			this.MinimumSize = new System.Drawing.Size(530, 280);
 			this.Name = "FormMain";
 			this.Text = "ModelConverter";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			this.splitContainer1.Panel1.ResumeLayout(false);
