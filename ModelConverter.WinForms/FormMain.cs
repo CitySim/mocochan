@@ -71,7 +71,10 @@ namespace ModelConverter.WinForms
 				string ext = Path.GetExtension(file).Substring(1);
 				if (!converter.extensions.ContainsKey(ext))
 				{
-					MessageBox.Show("Found no Plugin for " + ext, "No Plugin",  MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+					if (Properties.Settings.Default.unknownFileType)
+					{
+						MessageBox.Show("Found no Plugin for " + ext, "No Plugin", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+					}
 					continue;
 				}
 
@@ -108,6 +111,11 @@ namespace ModelConverter.WinForms
 			Properties.Settings.Default.lastExportType = converter.settings.exportType;
 
 			Properties.Settings.Default.Save();
+		}
+
+		private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			new FormSettings().ShowDialog();
 		}
 	}
 }

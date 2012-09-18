@@ -46,5 +46,17 @@ namespace ModelConverter.WinForms.Properties {
                 this["lastExportType"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool unknownFileType {
+            get {
+                return ((bool)(this["unknownFileType"]));
+            }
+            set {
+                this["unknownFileType"] = value;
+            }
+        }
     }
 }
