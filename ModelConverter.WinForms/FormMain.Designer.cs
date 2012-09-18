@@ -136,9 +136,9 @@
             this.columnHeader3});
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listView1.FullRowSelect = true;
-			this.listView1.Location = new System.Drawing.Point(24, 0);
+			this.listView1.Location = new System.Drawing.Point(32, 0);
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(624, 430);
+			this.listView1.Size = new System.Drawing.Size(616, 430);
 			this.listView1.SmallImageList = this.imageList1;
 			this.listView1.TabIndex = 2;
 			this.listView1.UseCompatibleStateImageBehavior = false;
@@ -200,7 +200,7 @@
             this.toolStripButton2});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(24, 430);
+			this.toolStrip1.Size = new System.Drawing.Size(32, 430);
 			this.toolStrip1.TabIndex = 3;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -220,8 +220,9 @@
 			this.toolStripButton2.Image = global::ModelConverter.WinForms.Properties.Resources.glyphicons_191_circle_minus;
 			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton2.Name = "toolStripButton2";
-			this.toolStripButton2.Size = new System.Drawing.Size(21, 20);
+			this.toolStripButton2.Size = new System.Drawing.Size(29, 20);
 			this.toolStripButton2.Text = "-";
+			this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
 			// 
 			// button1
 			// 

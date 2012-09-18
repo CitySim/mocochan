@@ -117,5 +117,13 @@ namespace ModelConverter.WinForms
 		{
 			new FormSettings().ShowDialog();
 		}
+
+		private void toolStripButton2_Click(object sender, EventArgs e)
+		{
+			foreach (ListViewItem item in listView1.SelectedItems)
+			{
+				listView1.Items.Remove(item);
+			}
+		}
 	}
 }
