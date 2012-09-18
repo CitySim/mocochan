@@ -232,7 +232,7 @@ namespace ModelConverter.Plugin.Collada.ColladaLib
 			doc.WriteEndElement();
 
 			doc.WriteStartElement("vcount");
-			for (int i = 0; i < model.Vertices.Count; i++)
+			for (int i = 0; i < model.Polygons.Count; i++)
 			{
 				doc.WriteString("3 ");
 			}
@@ -243,14 +243,14 @@ namespace ModelConverter.Plugin.Collada.ColladaLib
 			{
 				Polygon poly = model.Polygons[i];
 
-				string point1 = poly.Point1Id.ToString();
-				doc.WriteString(point1 + " " + point1 + " " + point1 + " ");
+				string point3 = poly.Point3Id.ToString();
+				doc.WriteString(point3 + " " + point3 + " " + point3 + " ");
 
 				string point2 = poly.Point2Id.ToString();
 				doc.WriteString(point2 + " " + point2 + " " + point2 + " ");
 
-				string point3 = poly.Point3Id.ToString();
-				doc.WriteString(point3 + " " + point3 + " " + point3 + " ");
+				string point1 = poly.Point1Id.ToString();
+				doc.WriteString(point1 + " " + point1 + " " + point1 + " ");
 			}
 			doc.WriteEndElement();
 
