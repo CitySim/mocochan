@@ -68,7 +68,7 @@ namespace ModelConverter.WinForms
 
 			foreach (string file in openFiles.FileNames)
 			{
-				string ext = Path.GetExtension(file).Substring(1);
+				string ext = Path.GetExtension(file).Substring(1).ToLower();
 				if (!converter.extensions.ContainsKey(ext))
 				{
 					if (Properties.Settings.Default.unknownFileType)

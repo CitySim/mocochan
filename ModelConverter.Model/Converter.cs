@@ -106,7 +106,7 @@ namespace ModelConverter.Model
 			}
 
 			// get plugin for import
-			string importExt = Path.GetExtension(importFile).Substring(1);
+			string importExt = Path.GetExtension(importFile).Substring(1).ToLower();
 			if (!extensions.ContainsKey(importExt))
 			{
 				logProvider.Log(LogLevel.Error, "no plugin found for " + importExt);
@@ -122,7 +122,7 @@ namespace ModelConverter.Model
 			}
 
 			// get plugin for export
-			string exportExt = Path.GetExtension(exportFile).Substring(1);
+			string exportExt = Path.GetExtension(exportFile).Substring(1).ToLower();
 			if (!extensions.ContainsKey(exportExt))
 			{
 				logProvider.Log(LogLevel.Error, "no plugin found for " + exportExt);
