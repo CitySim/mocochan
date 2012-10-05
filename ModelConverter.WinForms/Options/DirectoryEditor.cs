@@ -18,7 +18,8 @@ namespace ModelConverter.WinForms.Options
 		{
 			FolderBrowserDialog dialog = new FolderBrowserDialog();
 			dialog.Description = "Select Folder exported Files are saved to.";
-			
+
+			dialog.SelectedPath = (string)value;
 			DialogResult result = dialog.ShowDialog();
 
 			if (result == DialogResult.Cancel)
