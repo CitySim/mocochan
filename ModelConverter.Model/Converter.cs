@@ -53,6 +53,25 @@ namespace ModelConverter.Model
 						}
 					}
 				}
+				catch (FileLoadException ex)
+				{
+					// check if exception is caused by blocked dll
+					// Could not load file or assembly 'file:///C:\...\ModelConverter.Plugin.Collada.dll' or one of its 
+					// dependencies. Operation is not supported. (Exception from HRESULT: 0x80131515)
+					if (ex.Message.Contains("0x80131515"))
+					{
+						logProvider.Log(LogLevel.Error, "Couldn't load Plugin-DLL: " + file);
+						logProvider.Log(LogLevel.Error, "The DLL-File locks blockes (HRESULT 0x80131515)");
+						logProvider.Log(LogLevel.Error, "To unblock:");
+						logProvider.Log(LogLevel.Error, " 1. Rightclick the File -> Properties");
+						logProvider.Log(LogLevel.Error, " 2. click \"Unblock\" near the bottom of the Dialog");
+						logProvider.Log(LogLevel.Error, "");
+					}
+					else
+					{
+						throw ex;
+					}
+				}
 				catch (Exception ex)
 				{
 					logProvider.Log(LogLevel.Error, "Couldn't load Plugin-DLL: " + ex.Message);
