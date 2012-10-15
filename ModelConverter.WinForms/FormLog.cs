@@ -15,12 +15,31 @@ namespace ModelConverter.WinForms
 		public FormLog()
 		{
 			InitializeComponent();
+			listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 		}
 
 		public void Log(LogLevel lvl, string Message)
 		{
-			listView1.Items.Add(new ListViewItem(new string[] {DateTime.Now.ToString(), lvl.ToString(), Message}));
+			ListViewItem item = new ListViewItem(new string[] { DateTime.Now.ToString(), lvl.ToString(), Message });
+			switch (lvl)
+			{
+				case LogLevel.Fatal:
+					item.BackColor = Color.DarkRed;
+					item.ForeColor = Color.White;
+					break;
+				case LogLevel.Error:
+					item.BackColor = Color.Red;
+					item.ForeColor = Color.White;
+					break;
+				case LogLevel.Warning:
+					item.BackColor = Color.Orange;
+					item.ForeColor = Color.White;
+					break;
+			}
+			listView1.Items.Add(item);
 			listView1.EnsureVisible(listView1.Items.Count - 1);
+
+			listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 		}
 
 		private void FormLog_FormClosing(object sender, FormClosingEventArgs e)
