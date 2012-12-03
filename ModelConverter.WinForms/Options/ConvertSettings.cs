@@ -34,7 +34,7 @@ namespace ModelConverter.WinForms.Options
 			catch { }
 		}
 
-		[EditorAttribute(typeof(DirectoryEditor),typeof(System.Drawing.Design.UITypeEditor))]
+		[EditorAttribute(typeof(DirectoryEditor), typeof(System.Drawing.Design.UITypeEditor))]
 		public string outputDirectory
 		{
 			get { return converterSettings.outputDir; }
@@ -81,6 +81,16 @@ namespace ModelConverter.WinForms.Options
 			set
 			{
 				converterSettings.scaleFactor = value;
+			}
+		}
+
+		[DefaultValue(false)]
+		public bool recalculateNormals
+		{
+			get { return converterSettings.recalculateNormals; }
+			set
+			{
+				converterSettings.recalculateNormals = value;
 			}
 		}
 	}

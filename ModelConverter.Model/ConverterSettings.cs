@@ -25,5 +25,10 @@ namespace ModelConverter.Model
 		/// 2.0 => 200% double size
 		/// </summary>
 		public float scaleFactor = 1.0f;
+
+		/// <summary>
+		/// Recalcutes Normals of Objects using a very simple Method.
+		/// </summary>
+		public bool recalculateNormals = false; 
 	}
 }

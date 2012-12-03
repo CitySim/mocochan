@@ -174,6 +174,10 @@ namespace ModelConverter.Model
 			{
 				imported.Scale(settings.scaleFactor);
 			}
+			if (settings.recalculateNormals)
+			{
+				imported.RecalculateNormals();
+			}
 
 			logProvider.Log(LogLevel.Info, "writing " + exportPlugin.fileExtensions[exportExt] + " (" + exportExt + ")");
 			try

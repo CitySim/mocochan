@@ -51,10 +51,6 @@
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.propertyGrid2 = new System.Windows.Forms.PropertyGrid();
-			this.tabPage3 = new System.Windows.Forms.TabPage();
-			this.propertyGrid3 = new System.Windows.Forms.PropertyGrid();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -63,8 +59,6 @@
 			this.toolStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
-			this.tabPage2.SuspendLayout();
-			this.tabPage3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
@@ -94,7 +88,7 @@
 			this.logToolStripMenuItem.Checked = true;
 			this.logToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.logToolStripMenuItem.Name = "logToolStripMenuItem";
-			this.logToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.logToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
 			this.logToolStripMenuItem.Text = "Log";
 			this.logToolStripMenuItem.Click += new System.EventHandler(this.logToolStripMenuItem_Click);
 			// 
@@ -102,20 +96,20 @@
 			// 
 			this.settingsToolStripMenuItem.Image = global::ModelConverter.WinForms.Properties.Resources.glyphicons_280_settings;
 			this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-			this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
 			this.settingsToolStripMenuItem.Text = "Settings";
 			this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(113, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Image = global::ModelConverter.WinForms.Properties.Resources.glyphicons_020_home;
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -136,9 +130,9 @@
             this.columnHeader3});
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listView1.FullRowSelect = true;
-			this.listView1.Location = new System.Drawing.Point(32, 0);
+			this.listView1.Location = new System.Drawing.Point(24, 0);
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(616, 430);
+			this.listView1.Size = new System.Drawing.Size(624, 430);
 			this.listView1.SmallImageList = this.imageList1;
 			this.listView1.TabIndex = 2;
 			this.listView1.UseCompatibleStateImageBehavior = false;
@@ -200,7 +194,7 @@
             this.toolStripButton2});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(32, 430);
+			this.toolStrip1.Size = new System.Drawing.Size(24, 430);
 			this.toolStrip1.TabIndex = 3;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -220,7 +214,7 @@
 			this.toolStripButton2.Image = global::ModelConverter.WinForms.Properties.Resources.glyphicons_191_circle_minus;
 			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton2.Name = "toolStripButton2";
-			this.toolStripButton2.Size = new System.Drawing.Size(29, 20);
+			this.toolStripButton2.Size = new System.Drawing.Size(21, 20);
 			this.toolStripButton2.Text = "-";
 			this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
 			// 
@@ -246,8 +240,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Controls.Add(this.tabPage3);
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
 			this.tabControl1.Name = "tabControl1";
@@ -273,42 +265,6 @@
 			this.propertyGrid1.Size = new System.Drawing.Size(251, 365);
 			this.propertyGrid1.TabIndex = 0;
 			// 
-			// tabPage2
-			// 
-			this.tabPage2.Controls.Add(this.propertyGrid2);
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Size = new System.Drawing.Size(251, 365);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "Import";
-			this.tabPage2.UseVisualStyleBackColor = true;
-			// 
-			// propertyGrid2
-			// 
-			this.propertyGrid2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.propertyGrid2.Location = new System.Drawing.Point(0, 0);
-			this.propertyGrid2.Name = "propertyGrid2";
-			this.propertyGrid2.Size = new System.Drawing.Size(251, 365);
-			this.propertyGrid2.TabIndex = 1;
-			// 
-			// tabPage3
-			// 
-			this.tabPage3.Controls.Add(this.propertyGrid3);
-			this.tabPage3.Location = new System.Drawing.Point(4, 22);
-			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Size = new System.Drawing.Size(251, 365);
-			this.tabPage3.TabIndex = 2;
-			this.tabPage3.Text = "Export";
-			this.tabPage3.UseVisualStyleBackColor = true;
-			// 
-			// propertyGrid3
-			// 
-			this.propertyGrid3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.propertyGrid3.Location = new System.Drawing.Point(0, 0);
-			this.propertyGrid3.Name = "propertyGrid3";
-			this.propertyGrid3.Size = new System.Drawing.Size(251, 365);
-			this.propertyGrid3.TabIndex = 1;
-			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -333,8 +289,6 @@
 			this.toolStrip1.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
-			this.tabPage2.ResumeLayout(false);
-			this.tabPage3.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -352,11 +306,7 @@
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPage1;
-		private System.Windows.Forms.TabPage tabPage2;
-		private System.Windows.Forms.TabPage tabPage3;
 		private System.Windows.Forms.PropertyGrid propertyGrid1;
-		private System.Windows.Forms.PropertyGrid propertyGrid2;
-		private System.Windows.Forms.PropertyGrid propertyGrid3;
 		private System.Windows.Forms.ToolStrip toolStrip1;
 		private System.Windows.Forms.ToolStripButton toolStripButton1;
 		private System.Windows.Forms.ToolStripButton toolStripButton2;
