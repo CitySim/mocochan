@@ -57,8 +57,7 @@ namespace ModelConverter.Plugin.V3o
                 if (line.StartsWith("["))
                     continue; // some Meta Info, we dont read
 
-                string[] splittedLine;
-                splittedLine = line.Split(',');
+                string[] splittedLine = line.Split(',');
 
                 ModelAnimationFrame activeFrame = null;
 
