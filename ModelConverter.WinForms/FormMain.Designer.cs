@@ -42,7 +42,6 @@
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -94,7 +93,6 @@
 			// 
 			// settingsToolStripMenuItem
 			// 
-			this.settingsToolStripMenuItem.Image = global::ModelConverter.WinForms.Properties.Resources.glyphicons_280_settings;
 			this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
 			this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
 			this.settingsToolStripMenuItem.Text = "Settings";
@@ -107,7 +105,6 @@
 			// 
 			// exitToolStripMenuItem
 			// 
-			this.exitToolStripMenuItem.Image = global::ModelConverter.WinForms.Properties.Resources.glyphicons_020_home;
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
 			this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
@@ -115,7 +112,6 @@
 			// 
 			// aboutToolStripMenuItem
 			// 
-			this.aboutToolStripMenuItem.Image = global::ModelConverter.WinForms.Properties.Resources.glyphicons_195_circle_info;
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
 			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
 			this.aboutToolStripMenuItem.Text = "About";
@@ -130,10 +126,9 @@
             this.columnHeader3});
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listView1.FullRowSelect = true;
-			this.listView1.Location = new System.Drawing.Point(24, 0);
+			this.listView1.Location = new System.Drawing.Point(71, 0);
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(624, 430);
-			this.listView1.SmallImageList = this.imageList1;
+			this.listView1.Size = new System.Drawing.Size(577, 430);
 			this.listView1.TabIndex = 2;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
@@ -157,14 +152,6 @@
 			// 
 			this.columnHeader3.Text = "Type";
 			this.columnHeader3.Width = 100;
-			// 
-			// imageList1
-			// 
-			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList1.Images.SetKeyName(0, "glyphicons_054_clock.png");
-			this.imageList1.Images.SetKeyName(1, "glyphicons_206_ok_2.png");
-			this.imageList1.Images.SetKeyName(2, "glyphicons_207_remove_2.png");
 			// 
 			// splitContainer1
 			// 
@@ -194,28 +181,24 @@
             this.toolStripButton2});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(24, 430);
+			this.toolStrip1.Size = new System.Drawing.Size(71, 430);
 			this.toolStrip1.TabIndex = 3;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
 			// toolStripButton1
 			// 
-			this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.toolStripButton1.Image = global::ModelConverter.WinForms.Properties.Resources.glyphicons_190_circle_plus;
 			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton1.Name = "toolStripButton1";
-			this.toolStripButton1.Size = new System.Drawing.Size(21, 20);
-			this.toolStripButton1.Text = "+";
+			this.toolStripButton1.Size = new System.Drawing.Size(68, 20);
+			this.toolStripButton1.Text = "Add";
 			this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
 			// 
 			// toolStripButton2
 			// 
-			this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.toolStripButton2.Image = global::ModelConverter.WinForms.Properties.Resources.glyphicons_191_circle_minus;
 			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton2.Name = "toolStripButton2";
-			this.toolStripButton2.Size = new System.Drawing.Size(21, 20);
-			this.toolStripButton2.Text = "-";
+			this.toolStripButton2.Size = new System.Drawing.Size(68, 20);
+			this.toolStripButton2.Text = "Remove";
 			this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
 			// 
 			// button1
@@ -311,7 +294,6 @@
 		private System.Windows.Forms.ToolStripButton toolStripButton1;
 		private System.Windows.Forms.ToolStripButton toolStripButton2;
 		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.ImageList imageList1;
 		internal System.Windows.Forms.ListView listView1;
 		private System.Windows.Forms.ColumnHeader columnState;
 		private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
