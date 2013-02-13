@@ -26,6 +26,7 @@ namespace ModelConverter.WinForms
 			logWindow = new FormLog();
 			logWindow.VisibleChanged += logWindow_VisibleChanged;
 			logWindow.Show();
+			//logWindow.Owner = this;
 
 			converter = new Converter(new ConverterSettings(), logWindow);
 			convertSettings = new ConvertSettings(converter);
