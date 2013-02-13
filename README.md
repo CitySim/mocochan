@@ -10,4 +10,4 @@ a small program with plugin based support for several 3D model formats. In main 
 
 Support for more formats is also planned of course!
 
-License: <http://creativecommons.org/licenses/by-nc-sa/3.0/de/>
+License: LGPL v3
