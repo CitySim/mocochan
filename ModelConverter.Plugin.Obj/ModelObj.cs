@@ -63,10 +63,8 @@ namespace ModelConverter.Plugin.Obj
 							host.logProvider.Log(LogLevel.Warning, "Illigal Material Link, Line " + i);
                             continue;
                         }
-                        string mtlPath = Path.Combine(
-                            Path.GetDirectoryName(filePath),
-                            fileLines[i].Substring(7)
-                            );
+						string mtlPath = Path.Combine(Path.GetDirectoryName(filePath), fileLines[i].Substring(7));
+
                         //TODO: DO a bit more
 						string[] mtllibLines = new string[0];
 						try
@@ -161,9 +159,9 @@ namespace ModelConverter.Plugin.Obj
                             continue;
                         }
                         Vector3 normal = new Vector3();
-                        normal.X = float.Parse(tokens[1]);
-                        normal.Y = float.Parse(tokens[2]);
-                        normal.Z = float.Parse(tokens[3]);
+                        normal.X = float.Parse(tokens[1], CultureInfo.GetCultureInfo("en-US"));
+						normal.Y = float.Parse(tokens[2], CultureInfo.GetCultureInfo("en-US"));
+						normal.Z = float.Parse(tokens[3], CultureInfo.GetCultureInfo("en-US"));
                         Normals.Add(normal);
                         break;
 
