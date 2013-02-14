@@ -273,14 +273,14 @@ namespace ModelConverter.Plugin.V3o
             {
                 fileLines.Add(
                     "D" +
-                    ", " + Convert.ToInt32(vertex.Coordinate.Z).ToString() +
-                    ", " + Convert.ToInt32(vertex.Coordinate.X).ToString() +
-                    ", " + Convert.ToInt32(vertex.Coordinate.Y).ToString() +
-                    ", " + Convert.ToInt32(vertex.Normals.Z * 256.0f).ToString() +
-                    ", " + Convert.ToInt32(vertex.Normals.X * 256.0f).ToString() +
-                    ", " + Convert.ToInt32(vertex.Normals.Y * 256.0f).ToString() +
-                    ", " + Convert.ToInt32(vertex.TextureCoordinate.X * 1024.0f).ToString() +
-                    ", " + Convert.ToInt32(vertex.TextureCoordinate.Y * 1024.0f).ToString() +
+					", " + (vertex.Coordinate.Z).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+					", " + (vertex.Coordinate.X).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+					", " + (vertex.Coordinate.Y).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+					", " + (vertex.Normals.Z * 256.0f).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+					", " + (vertex.Normals.X * 256.0f).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+					", " + (vertex.Normals.Y * 256.0f).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+					", " + (vertex.TextureCoordinate.X * 1024.0f).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+					", " + (vertex.TextureCoordinate.Y * 1024.0f).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
                     ", 0" +
                     ", 0" +
                     ", 0" +
@@ -348,12 +348,12 @@ namespace ModelConverter.Plugin.V3o
 
             fileLines.Add(
                 "BOX" +
-                ", " + Convert.ToInt32(smalltestPoint.Z / 100.0f).ToString() +
-                ", " + Convert.ToInt32(smalltestPoint.X / 100.0f).ToString() +
-                ", " + Convert.ToInt32(smalltestPoint.Y / 100.0f).ToString() +
-                ", " + Convert.ToInt32(biggestPoint.Z / 100.0f).ToString() +
-                ", " + Convert.ToInt32(biggestPoint.X / 100.0f).ToString() +
-                ", " + Convert.ToInt32(biggestPoint.Y / 100.0f).ToString()
+				", " + (smalltestPoint.Z / 100.0f).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+				", " + (smalltestPoint.X / 100.0f).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+				", " + (smalltestPoint.Y / 100.0f).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+				", " + (biggestPoint.Z / 100.0f).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+				", " + (biggestPoint.X / 100.0f).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+				", " + (biggestPoint.Y / 100.0f).ToString("0", CultureInfo.GetCultureInfo("en-US"))
                 );
 
             // Export ??? --------------------------------------------------------------------------------------------
@@ -390,12 +390,12 @@ namespace ModelConverter.Plugin.V3o
                         fileLines.Add(
                             "A" +
                             ", " + vertex.Key.ToString() +
-                            ", " + Convert.ToInt32(vertex.Value.Coordinate.Z - model.Vertices[vertex.Key].Coordinate.Z).ToString() +
-                            ", " + Convert.ToInt32(vertex.Value.Coordinate.X - model.Vertices[vertex.Key].Coordinate.X).ToString() +
-                            ", " + Convert.ToInt32(vertex.Value.Coordinate.Y - model.Vertices[vertex.Key].Coordinate.Y).ToString() +
-                            ", " + Convert.ToInt32(vertex.Value.Normals.Z).ToString() +
-                            ", " + Convert.ToInt32(vertex.Value.Normals.X).ToString() +
-                            ", " + Convert.ToInt32(vertex.Value.Normals.Y).ToString()
+							", " + (vertex.Value.Coordinate.Z - model.Vertices[vertex.Key].Coordinate.Z).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+							", " + (vertex.Value.Coordinate.X - model.Vertices[vertex.Key].Coordinate.X).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+							", " + (vertex.Value.Coordinate.Y - model.Vertices[vertex.Key].Coordinate.Y).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+							", " + (vertex.Value.Normals.Z).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+							", " + (vertex.Value.Normals.X).ToString("0", CultureInfo.GetCultureInfo("en-US")) +
+							", " + (vertex.Value.Normals.Y).ToString("0", CultureInfo.GetCultureInfo("en-US"))
                             );
                     }
                 }
