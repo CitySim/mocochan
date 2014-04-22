@@ -42,7 +42,3 @@ publish
 
 # Publish Web Output
 *.Publish.xml
-
-/ModelConverter.Old
-/_TeamCity.ModelConverter
-
