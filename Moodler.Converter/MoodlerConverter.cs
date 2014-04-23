@@ -16,9 +16,14 @@ namespace Moodler.Converter
 		/// </summary>
 		public List<IPlugin> plugins = new List<IPlugin>();
 		public Dictionary<string, IPlugin> extensions = new Dictionary<string, IPlugin>();
-		public ILogProvider logProvider { get; set; }
 
-		public ConverterSettings settings;
+		public ILogProvider LogProvider
+		{
+			get { return this.Settings.LogProvider; }
+			set { this.Settings.LogProvider = value; }
+		}
+
+		public ConverterSettings Settings;
 
 		public MoodlerConverter() : this(new ConverterSettings())
 		{
@@ -26,8 +31,7 @@ namespace Moodler.Converter
 
 		public MoodlerConverter(ConverterSettings settings)
 		{
-			this.settings = settings;
-			this.logProvider = settings.LogProvider;
+			this.Settings = settings;
 		}
 
 		public void loadPlugins(string loadDir)
@@ -59,7 +63,7 @@ namespace Moodler.Converter
 							}
 							*/
 
-							logProvider.Log(LogLevel.Info, "loaded Plugin-DLL: " + newPlugin.Name);
+							LogProvider.Log(LogLevel.Info, "loaded Plugin-DLL: " + newPlugin.Name);
 						}
 					}
 				}
@@ -70,8 +74,8 @@ namespace Moodler.Converter
 					// Operation is not supported. (Exception from HRESULT: 0x80131515)
 					if (ex.Message.Contains("0x80131515"))
 					{
-						logProvider.Log(LogLevel.Error, "Couldn't load Plugin-DLL: " + file);
-						logProvider.Log(LogLevel.Error, "The DLL-File locks blockes (HRESULT 0x80131515)");
+						LogProvider.Log(LogLevel.Error, "Couldn't load Plugin-DLL: " + file);
+						LogProvider.Log(LogLevel.Error, "The DLL-File locks blockes (HRESULT 0x80131515)");
 					}
 					else
 					{
@@ -80,34 +84,40 @@ namespace Moodler.Converter
 				}
 				catch (Exception ex)
 				{
-					logProvider.Log(LogLevel.Error, "Couldn't load Plugin-DLL: " + ex.Message);
+					LogProvider.Log(LogLevel.Error, "Couldn't load Plugin-DLL: " + ex.Message);
 				}
 			}
 		}
-		public Model Convert(String importFile, String exportFile)
+
+		public Model Convert(String input, String output)
 		{
-			return Convert(importFile, exportFile, new ConvertSettings());
+			return Convert(input, output, new ConvertSettings());
 		}
 
-		public Model Convert(String importFile, String exportFile, ConvertSettings settings)
+		public Model Convert(String input, String output, ConvertSettings settings)
 		{
-			logProvider.Log(LogLevel.Info, "converting " + importFile);
-			logProvider.Log(LogLevel.Info, "will be saved at " + exportFile);
-			
-			IImporter importer = null;
-			IExporter exporter = null;
+			LogProvider.Log(LogLevel.Info, "converting " + input);
+			LogProvider.Log(LogLevel.Info, "will be saved at " + output);
 
-			Stream fileIn = File.OpenRead(importFile);
-			Stream fileOut = File.Open(exportFile, FileMode.Create, FileAccess.Write);
-			return Convert(fileIn, importer, fileOut, exporter, settings);
+			// TODO: guess importer/exporter to use by file extension if not set
+			if (settings.Importer == null)
+			{
+			}
+			if (settings.Exporter == null)
+			{
+			}
+
+			Stream streamInput = File.Open(input, FileMode.Open, FileAccess.Read);
+			Stream streamOutput = File.Open(output, FileMode.Create, FileAccess.Write);
+			return Convert(streamInput, streamOutput, settings);
 		}
 
-		public Model Convert(Stream input, IImporter importer, Stream output, IExporter exporter, ConvertSettings settings)
+		public Model Convert(Stream input, Stream output, ConvertSettings settings)
 		{
 			Stopwatch watch = new Stopwatch();
 			watch.Start();
 
-			Model model = importer.Read(input);
+			Model model = settings.Importer.Read(input);
 
 			// processing
 			if (settings.ScaleFactor != 1.0f)
@@ -115,11 +125,11 @@ namespace Moodler.Converter
 			if (settings.RecalculateNormals)
 				model.RecalculateNormals();
 
-			exporter.Write(model, output);
+			settings.Exporter.Write(model, output);
 
 			// log time
 			watch.Stop();
-			logProvider.Log(LogLevel.Info, "completed in " + watch.Elapsed.ToString());
+			LogProvider.Log(LogLevel.Info, "completed in " + watch.Elapsed.ToString());
 
 			return model;
 		}

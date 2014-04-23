@@ -14,7 +14,7 @@ namespace Moodler.WinForms.Options
 		public ConverterOptions(MoodlerConverter converter)
 		{
 			this.Converter = converter;
-			this.ConverterSettings = converter.settings;
+			this.ConverterSettings = converter.Settings;
 
 			ExtensionConverter.converter = this.Converter;
 		}

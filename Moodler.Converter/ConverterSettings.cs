@@ -9,15 +9,10 @@ namespace Moodler.Converter
 {
 	public class ConverterSettings : IEnumerable
 	{
-		public ConverterSettings()
-		{
-			LogProvider = new VoidLogProvider();
-		}
-
 		/// <summary>
 		/// Default Log Provider to use
 		/// </summary>
-		public ILogProvider LogProvider;
+		public ILogProvider LogProvider = new VoidLogProvider();;
 
 		public IEnumerator GetEnumerator()
 		{
