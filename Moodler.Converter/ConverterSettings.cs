@@ -12,7 +12,7 @@ namespace Moodler.Converter
 		/// <summary>
 		/// Default Log Provider to use
 		/// </summary>
-		public ILogProvider LogProvider = new VoidLogProvider();;
+		public ILogProvider LogProvider = new VoidLogProvider();
 
 		public IEnumerator GetEnumerator()
 		{
