@@ -19,9 +19,9 @@ namespace MocoChan
 			}
 		}
 
-		public void Log(LogLevel lvl, string Message)
+		public void Log(LogLevel lvl, string message)
 		{
-			Console.WriteLine("{0} │ {1}", lvl.ToString().PadRight(LevelLength), Message);
+			Console.WriteLine(new LogMessage(message, lvl).ToString());
 		}
 	}
 }

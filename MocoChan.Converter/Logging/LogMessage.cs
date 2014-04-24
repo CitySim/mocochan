@@ -32,7 +32,7 @@ namespace MocoChan.Converter.Logging
 
 		public override string ToString()
 		{
-			return String.Format("{0} {1} | {2}", Time.ToString(), Level.ToString().PadRight(LevelMaxLength), Message);
+			return String.Format("{0} | {1} | {2}", Time.ToString(), Level.ToString().PadRight(LevelMaxLength), Message);
 		}
 	}
 }

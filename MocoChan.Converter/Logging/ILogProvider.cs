@@ -15,6 +15,6 @@ namespace MocoChan.Converter.Logging
 
 	public interface ILogProvider
 	{
-		void Log(LogLevel lvl, string Message);
+		void Log(LogLevel lvl, string message);
 	}
 }

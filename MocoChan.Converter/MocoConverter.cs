@@ -49,7 +49,7 @@ namespace MocoChan.Converter
 
 					foreach (System.Type type in assembly.GetTypes())
 					{
-						if (type.IsPublic && !type.IsAbstract && type.GetInterface("MocoChan.Converter.IPlugin") != null)
+						if (type.IsPublic && !type.IsAbstract && type.GetInterface("MocoChan.Converter.PluginInterface.IPlugin") != null)
 						{
 							// create instance of plugin
 							IPlugin newPlugin = (IPlugin)Activator.CreateInstance(type);
