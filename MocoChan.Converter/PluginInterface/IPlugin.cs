@@ -13,9 +13,5 @@ namespace MocoChan.Converter.PluginInterface
 		Version PluginVersion { get; }
 
 		IPluginHost Host { get; set; }
-
-
-		IImporter Importer { get; }
-		IExporter Exporter { get; }
 	}
 }

@@ -12,10 +12,10 @@ namespace MocoChan.Converter.PluginInterface
 	{
 		ILogProvider LogProvider { get; set; }
 
-		void LoadPlugins (string loadDir);
+		void LoadPlugins(string loadDir);
 
-		Model Convert(String input, String output);
-		Model Convert(String input, String output, ConvertSettings settings);
-		Model Convert(Stream input, Stream output, ConvertSettings settings);
+		Asset Convert(String input, String output);
+		Asset Convert(String input, String output, ConvertSettings settings);
+		Asset Convert(Stream input, Stream output, ConvertSettings settings);
 	}
 }

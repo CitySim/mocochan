@@ -7,8 +7,10 @@ using System.Text;
 
 namespace MocoChan.Converter.PluginInterface
 {
-	public interface IExporter
+	public interface IExporter : IPlugin
 	{
-		void Write(Model asset, Stream output);
+		Dictionary<String, String> Formats { get; }
+		Type ExporterSettingsType { get; }
+		void Write(Asset asset, Stream output);
 	}
 }

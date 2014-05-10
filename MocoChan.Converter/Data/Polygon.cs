@@ -7,7 +7,7 @@ namespace MocoChan.Converter.Data
 {
     public class Polygon
     {
-		private Model model;
+		private Asset model;
 
         public int Point1Id;
 		public Vertex Point1Vertex
@@ -37,7 +37,7 @@ namespace MocoChan.Converter.Data
 
         public string materialId;
 
-		public Polygon(Model model)
+		public Polygon(Asset model)
 		{
 			this.model = model;
 		}

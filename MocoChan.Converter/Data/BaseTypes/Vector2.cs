@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MocoChan.Converter.Data
+namespace MocoChan.Converter.Data.BaseTypes
 {
     /// <summary>
     /// Defines a Point with X and Z Values

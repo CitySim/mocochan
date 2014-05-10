@@ -5,25 +5,15 @@ using System.Text;
 
 namespace MocoChan.Converter.Data
 {
-    public class Model
+    public class Asset
     {
-        public List<Vertex> Vertices = new List<Vertex>();
-        public List<Polygon> Polygons = new List<Polygon>();
-        public Dictionary<string, Material> Materials = new Dictionary<string, Material>();
-        public List<ModelAnimation> ModelAnimations = new List<ModelAnimation>();
+		public List<Material> Materials = new List< Material>();
 
-        public Model()
+        public Asset()
         {
         }
 
-        public Model(Model Model)
-        {
-            Vertices = Model.Vertices;
-            Polygons = Model.Polygons;
-            Materials = Model.Materials;
-        }
-
-        public void Scale(double factor)
+        /* public void Scale(double factor)
         {
             //scale model
             foreach (Vertex vertex in Vertices)
@@ -73,6 +63,6 @@ namespace MocoChan.Converter.Data
                 Vertices[polygon.Point2Id].Normals = Normal;
                 Vertices[polygon.Point3Id].Normals = Normal;
             }
-        }
+        }*/
     }
 }

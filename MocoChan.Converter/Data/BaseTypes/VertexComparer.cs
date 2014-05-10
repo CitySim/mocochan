@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 
-namespace MocoChan.Converter.Data
+namespace MocoChan.Converter.Data.BaseTypes
 {
     public class VertexComparer : IEqualityComparer<Vertex>, IComparer<Vertex>
     {
@@ -23,13 +23,13 @@ namespace MocoChan.Converter.Data
                 x.TextureCoordinate >= y.TextureCoordinate)
                 return +1;
 
-            //x smaller than y
+            // x smaller than y
             return -1;
         }
 
         public int GetHashCode(Vertex obj)
         {
-            throw new NotImplementedException();
+			return obj.GetHashCode();
         }
     }
 }

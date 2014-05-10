@@ -89,12 +89,12 @@ namespace MocoChan.Converter
 			}
 		}
 
-		public Model Convert(String input, String output)
+		public Asset Convert(String input, String output)
 		{
 			return Convert(input, output, new ConvertSettings());
 		}
 
-		public Model Convert(String input, String output, ConvertSettings settings)
+		public Asset Convert(String input, String output, ConvertSettings settings)
 		{
 			LogProvider.Log(LogLevel.Info, "converting " + input);
 			LogProvider.Log(LogLevel.Info, "will be saved at " + output);
@@ -112,12 +112,12 @@ namespace MocoChan.Converter
 			return Convert(streamInput, streamOutput, settings);
 		}
 
-		public Model Convert(Stream input, Stream output, ConvertSettings settings)
+		public Asset Convert(Stream input, Stream output, ConvertSettings settings)
 		{
 			Stopwatch watch = new Stopwatch();
 			watch.Start();
 
-			Model model = settings.Importer.Read(input);
+			Asset model = settings.Importer.Read(input);
 
 			// processing
 			if (settings.ScaleFactor != 1.0f)

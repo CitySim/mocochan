@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConvertSettings.cs" />
-    <Compile Include="Data\Model.cs" />
+    <Compile Include="Data\Asset.cs" />
     <Compile Include="Logging\ILogProvider.cs" />
     <Compile Include="PluginInterface\IPluginHost.cs" />
     <Compile Include="Logging\LogMessage.cs" />
@@ -49,15 +49,15 @@
     <Compile Include="Logging\VoidLogProvider.cs" />
     <Compile Include="Data\ModelAnimation.cs" />
     <Compile Include="Data\ModelAnimationFrame.cs" />
-    <Compile Include="Data\Vector2.cs" />
-    <Compile Include="Data\Vector3.cs" />
+    <Compile Include="Data\BaseTypes\Vector2.cs" />
+    <Compile Include="Data\BaseTypes\Vector3.cs" />
     <Compile Include="Data\Polygon.cs" />
     <Compile Include="PluginInterface\IExporter.cs" />
     <Compile Include="PluginInterface\IImporter.cs" />
     <Compile Include="PluginInterface\IPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Data\Vertex.cs" />
-    <Compile Include="Data\VertexComparer.cs" />
+    <Compile Include="Data\BaseTypes\Vertex.cs" />
+    <Compile Include="Data\BaseTypes\VertexComparer.cs" />
     <Compile Include="MocoSettings.cs" />
     <Compile Include="MocoConverter.cs" />
   </ItemGroup>

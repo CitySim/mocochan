@@ -15,9 +15,9 @@ namespace MocoChan.Converter
 		public IImporter Importer;
 		public IExporter Exporter;
 
-		public IEnumerator GetEnumerator ()
+		public IEnumerator GetEnumerator()
 		{
-			throw new NotImplementedException ();
+			throw new NotImplementedException();
 		}
 	}
 }

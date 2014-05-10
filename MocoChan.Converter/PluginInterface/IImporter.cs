@@ -7,8 +7,10 @@ using System.Text;
 
 namespace MocoChan.Converter.PluginInterface
 {
-	public interface IImporter
+	public interface IImporter : IPlugin
 	{
-		Model Read(Stream input);
+		Dictionary<String, String> Formats { get; }
+		Type ImporterSettingsType { get; }
+		Asset Read(Stream input);
 	}
 }

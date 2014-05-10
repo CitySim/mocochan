@@ -19,7 +19,7 @@ namespace MocoChan.Plugin.Collada
 		{
 		}
 
-		public void Write(Model model, Stream output)
+		public void Write(Asset model, Stream output)
 		{
 			XmlTextWriter doc = new XmlTextWriter(output, Encoding.UTF8);
 
@@ -66,7 +66,7 @@ namespace MocoChan.Plugin.Collada
 			doc.Flush();
 		}
 
-		private void WriteGeometrieLibrary(XmlTextWriter doc, Model model)
+		private void WriteGeometrieLibrary(XmlTextWriter doc, Asset model)
 		{
 			doc.WriteStartElement("library_geometries");
 			doc.WriteStartElement("geometry");
@@ -268,7 +268,7 @@ namespace MocoChan.Plugin.Collada
 			doc.Flush();
 		}
 
-		private void WriteVisualScenesLibrary(XmlTextWriter doc, Model model)
+		private void WriteVisualScenesLibrary(XmlTextWriter doc, Asset model)
 		{
 			doc.WriteStartElement("library_visual_scenes");
 
@@ -309,7 +309,7 @@ namespace MocoChan.Plugin.Collada
 			doc.Flush();
 		}
 
-		private void WriteScene(XmlTextWriter doc, Model model)
+		private void WriteScene(XmlTextWriter doc, Asset model)
 		{
 			doc.WriteStartElement("scene");
 

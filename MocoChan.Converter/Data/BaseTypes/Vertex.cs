@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 
-namespace MocoChan.Converter.Data
+namespace MocoChan.Converter.Data.BaseTypes
 {
     public class Vertex
     {
