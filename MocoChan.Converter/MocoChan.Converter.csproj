@@ -51,7 +51,6 @@
     <Compile Include="Data\ModelAnimationFrame.cs" />
     <Compile Include="Data\BaseTypes\Vector2.cs" />
     <Compile Include="Data\BaseTypes\Vector3.cs" />
-    <Compile Include="Data\Polygon.cs" />
     <Compile Include="PluginInterface\IExporter.cs" />
     <Compile Include="PluginInterface\IImporter.cs" />
     <Compile Include="PluginInterface\IPlugin.cs" />
@@ -60,6 +59,7 @@
     <Compile Include="Data\BaseTypes\VertexComparer.cs" />
     <Compile Include="MocoSettings.cs" />
     <Compile Include="MocoConverter.cs" />
+    <Compile Include="Data\BaseTypes\Polygon.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

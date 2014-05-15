@@ -120,10 +120,10 @@ namespace MocoChan.Converter
 			Asset model = settings.Importer.Read(input);
 
 			// processing
-			if (settings.ScaleFactor != 1.0f)
-				model.Scale(settings.ScaleFactor);
-			if (settings.RecalculateNormals)
-				model.RecalculateNormals();
+			//if (settings.ScaleFactor != 1.0f)
+			//	model.Scale(settings.ScaleFactor);
+			//if (settings.RecalculateNormals)
+			//	model.RecalculateNormals();
 
 			settings.Exporter.Write(model, output);
 
